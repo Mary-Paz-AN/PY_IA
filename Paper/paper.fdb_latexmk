@@ -1,9 +1,9 @@
 # Fdb version 4
-["pdflatex"] 1781741072.92715 "c:/Users/maryp/OneDrive/Documentos/TEC/SEMESTRE/IA/PY/PY_IA/Paper/paper.tex" "paper.pdf" "paper" 1781741075.22559 0
-  "../SegundaEtapa/comparacion_modelos.png" 1780069269 86877 55de899f3788ab92d84af6f92ea77d03 ""
-  "../SegundaEtapa/evaluacion_final_test.png" 1780069269 437103 c30ab846824edd6a7859c5879d30edf4 ""
-  "../SegundaEtapa/hypertuning_v2_comparacion.png" 1780069269 74500 7f087642670d6f2d87026c0e4d84006c ""
-  "../SegundaEtapa/shap_summary_plot.png" 1780069269 248052 5fff26f2b5b33988d566c4df9512591d ""
+["pdflatex"] 1782238682.43074 "c:/Users/maryp/OneDrive/Documentos/TEC/SEMESTRE/IA/PY/PY_IA/Paper/paper.tex" "paper.pdf" "paper" 1782238684.37947 0
+  "../SegundaEtapa/comparacion_modelos.png" 1781984142 74515 7750a656ea6648b87b6665c20744b509 ""
+  "../SegundaEtapa/evaluacion_final_test.png" 1781985671 404219 70b3c326bbd31bca92c6caa51e16e8ae ""
+  "../SegundaEtapa/hypertuning_v2_comparacion.png" 1781985669 65737 de5d6fa6f7a575ecc3e9abdfa4a6cd79 ""
+  "../SegundaEtapa/shap_summary_plot.png" 1781985682 231288 27cd34afba84e4eddd5d505a1580fdfd ""
   "../SegundaEtapa/shap_waterfall_v2.png" 1780003991 144233 577699c56869560b898b05ddaade741c ""
   "C:/Users/maryp/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1781239382 117591 22b659833b7bef3293b6092a9a7d8d20 ""
   "C:/Users/maryp/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1768073621 13333487 46cc4a940e31a4be84e440171fba6f50 ""
@@ -113,10 +113,10 @@
   "C:/Users/maryp/AppData/Local/Programs/MiKTeX/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1751104012 9684 a33a14b82ce60d6e77cb9be689d79ee6 ""
   "C:/Users/maryp/AppData/Local/Programs/MiKTeX/tex/latex/tools/array.sty" 1761901070 15651 9d7c62df82cb29a555c00550babfe364 ""
   "C:/Users/maryp/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
-  "c:/Users/maryp/OneDrive/Documentos/TEC/SEMESTRE/IA/PY/PY_IA/Paper/paper.tex" 1781741071 45114 65bfe7283284da7071b79db12022f496 ""
-  "paper.aux" 1781741074 8922 5d148138e483787f3e8514ff1a56c9df "pdflatex"
-  "paper.out" 1781741074 3949 4ad104f54eafae24a9d278c7bafe1a39 "pdflatex"
-  "paper.tex" 1781741071 45114 65bfe7283284da7071b79db12022f496 ""
+  "c:/Users/maryp/OneDrive/Documentos/TEC/SEMESTRE/IA/PY/PY_IA/Paper/paper.tex" 1782238679 47349 f7c983b88de7406dd30a96e85a01f911 ""
+  "paper.aux" 1782238684 8922 62d28f21951f3558b4e2ef50692d86f5 "pdflatex"
+  "paper.out" 1782238684 3949 4ad104f54eafae24a9d278c7bafe1a39 "pdflatex"
+  "paper.tex" 1782238679 47349 f7c983b88de7406dd30a96e85a01f911 ""
   (generated)
   "paper.aux"
   "paper.log"

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.1.10)  17 JUN 2026 18:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.1.10)  23 JUN 2026 12:18
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -454,128 +454,124 @@ LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 11
  (C:\Users\maryp\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 ) [2]
-Underfull \hbox (badness 5711) in paragraph at lines 192--193
+Underfull \hbox (badness 5711) in paragraph at lines 168--169
 \OT1/ptm/m/n/10 ging (\OT1/pcr/m/n/10 n_estimators=100\OT1/ptm/m/n/10 , \OT1/pcr/m/n/10 min_samples_leaf=5\OT1/ptm/m/n/10 ).
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 214--215
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 190--191
 []\OT1/pcr/m/n/10 colsample_bytree\OT1/ptm/m/n/10 : con-ti-nuo uni-for-me en
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 219--220
+Underfull \hbox (badness 10000) in paragraph at lines 195--196
 []\OT1/ptm/m/n/10 Ante es-te re-sul-ta-do, se realiz[]o una se-gun-da
  []
 
 
-Underfull \hbox (badness 4660) in paragraph at lines 219--220
+Underfull \hbox (badness 4660) in paragraph at lines 195--196
 \OT1/ptm/m/n/10 b[]usque-da (\OT1/ptm/m/it/10 Tu-ning v2\OT1/ptm/m/n/10 ) con ran-gos m[]as con-ser-va-do-res:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 219--220
+Underfull \hbox (badness 10000) in paragraph at lines 195--196
 \OT1/pcr/m/n/10 num_leaves=67\OT1/ptm/m/n/10 , \OT1/pcr/m/n/10 min_child_samples=63\OT1/ptm/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 219--220
+Underfull \hbox (badness 10000) in paragraph at lines 195--196
 \OT1/pcr/m/n/10 n_estimators=750\OT1/ptm/m/n/10 , \OT1/pcr/m/n/10 subsample=0.714 \OT1/ptm/m/n/10 y
  []
 
-[3]
-<../SegundaEtapa/comparacion_modelos.png, id=147, 860.4948pt x 422.5386pt>
+<../SegundaEtapa/comparacion_modelos.png, id=146, 860.4948pt x 422.5386pt>
 File: ../SegundaEtapa/comparacion_modelos.png Graphic file (type png)
 <use ../SegundaEtapa/comparacion_modelos.png>
-Package pdftex.def Info: ../SegundaEtapa/comparacion_modelos.png  used on input line 290.
+Package pdftex.def Info: ../SegundaEtapa/comparacion_modelos.png  used on input line 266.
 (pdftex.def)             Requested size: 252.0pt x 123.73871pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-<../SegundaEtapa/hypertuning_v2_comparacion.png, id=150, 931.8012pt x 350.2686pt>
-File: ../SegundaEtapa/hypertuning_v2_comparacion.png Graphic file (type png)
-<use ../SegundaEtapa/hypertuning_v2_comparacion.png>
-Package pdftex.def Info: ../SegundaEtapa/hypertuning_v2_comparacion.png  used on input line 321.
-(pdftex.def)             Requested size: 252.0pt x 94.72343pt.
- [4
+[4
 pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.348 
-      
-pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.348 
-      
-pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.348 
-      
-pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.348 
-       <../SegundaEtapa/comparacion_modelos.png> <../SegundaEtapa/hypertuning_v2_comparacion.png>]
-<../SegundaEtapa/evaluacion_final_test.png, id=163, 1004.0712pt x 805.5696pt>
+l.270 
+      ]
+<../SegundaEtapa/hypertuning_v2_comparacion.png, id=156, 931.8012pt x 350.2686pt>
+File: ../SegundaEtapa/hypertuning_v2_comparacion.png Graphic file (type png)
+<use ../SegundaEtapa/hypertuning_v2_comparacion.png>
+Package pdftex.def Info: ../SegundaEtapa/hypertuning_v2_comparacion.png  used on input line 297.
+(pdftex.def)             Requested size: 252.0pt x 94.72343pt.
+<../SegundaEtapa/evaluacion_final_test.png, id=158, 1004.0712pt x 805.5696pt>
 File: ../SegundaEtapa/evaluacion_final_test.png Graphic file (type png)
 <use ../SegundaEtapa/evaluacion_final_test.png>
-Package pdftex.def Info: ../SegundaEtapa/evaluacion_final_test.png  used on input line 355.
+Package pdftex.def Info: ../SegundaEtapa/evaluacion_final_test.png  used on input line 331.
 (pdftex.def)             Requested size: 252.0pt x 202.17859pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-<../SegundaEtapa/shap_summary_plot.png, id=167, 812.3148pt x 710.655pt>
-File: ../SegundaEtapa/shap_summary_plot.png Graphic file (type png)
-<use ../SegundaEtapa/shap_summary_plot.png>
-Package pdftex.def Info: ../SegundaEtapa/shap_summary_plot.png  used on input line 420.
-(pdftex.def)             Requested size: 252.0pt x 220.45258pt.
  [5
+pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.359 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.359 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.359 
+      
 pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.424 
+l.359 
       
 pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.424 
-      
-pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.424 
-      
-pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.424 
-       <../SegundaEtapa/evaluacion_final_test.png>]
-<../SegundaEtapa/shap_waterfall_v2.png, id=178, 571.8966pt x 635.4942pt>
+l.359 
+       <../SegundaEtapa/comparacion_modelos.png> <../SegundaEtapa/hypertuning_v2_comparacion.png> <../SegundaEtapa/evaluacion_final_test.png>]
+<../SegundaEtapa/shap_summary_plot.png, id=175, 812.3148pt x 710.655pt>
+File: ../SegundaEtapa/shap_summary_plot.png Graphic file (type png)
+<use ../SegundaEtapa/shap_summary_plot.png>
+Package pdftex.def Info: ../SegundaEtapa/shap_summary_plot.png  used on input line 396.
+(pdftex.def)             Requested size: 252.0pt x 220.45258pt.
+<../SegundaEtapa/shap_waterfall_v2.png, id=177, 571.8966pt x 635.4942pt>
 File: ../SegundaEtapa/shap_waterfall_v2.png Graphic file (type png)
 <use ../SegundaEtapa/shap_waterfall_v2.png>
-Package pdftex.def Info: ../SegundaEtapa/shap_waterfall_v2.png  used on input line 429.
+Package pdftex.def Info: ../SegundaEtapa/shap_waterfall_v2.png  used on input line 405.
 (pdftex.def)             Requested size: 252.0pt x 280.02557pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [6
+pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.409 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.409 
+      
 pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.471 
-      
+l.409 
+       <../SegundaEtapa/shap_summary_plot.png>]
+
+LaTeX Warning: Reference `subsec:particion' on page 7 undefined on input line 456.
+
+[7
 pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.471 
-       <../SegundaEtapa/shap_summary_plot.png> <../SegundaEtapa/shap_waterfall_v2.png>]
-
-LaTeX Warning: Reference `subsec:particion' on page 7 undefined on input line 480.
-
-
-Underfull \hbox (badness 1454) in paragraph at lines 554--558
+l.523 \bibitem{ke2017}
+                       <../SegundaEtapa/shap_waterfall_v2.png>]
+Underfull \hbox (badness 1454) in paragraph at lines 530--534
 []\OT1/ptm/m/n/8 B. Cui, Z. Ye, H. Zhao, Z. Ren-qing, L. Meng, and Y. Yang,
  []
 
@@ -590,7 +586,9 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[7] (paper.aux
+[8
+
+] (paper.aux
 LaTeX Info: Redefining \. on input line 15.
 LaTeX Info: Redefining \% on input line 15.
 )
@@ -606,17 +604,17 @@ Package rerunfilecheck Info: File `paper.out' has not changed.
 (rerunfilecheck)             Checksum: 4AD104F54EAFAE24A9D278C7BAFE1A39;3949.
  ) 
 Here is how much of TeX's memory you used:
- 12463 strings out of 467871
- 199043 string characters out of 5418376
+ 12464 strings out of 467871
+ 199049 string characters out of 5418376
  644380 words of memory out of 5000000
  41130 multiletter control sequences out of 15000+600000
  669493 words of font info for 119 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,9n,79p,1415b,466s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,9n,79p,1687b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/maryp/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/maryp/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/maryp/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/maryp/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/maryp/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/maryp/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/maryp/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/maryp/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/maryp/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/maryp/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/maryp/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/maryp/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on paper.pdf (7 pages, 988145 bytes).
+Output written on paper.pdf (8 pages, 993396 bytes).
 PDF statistics:
- 261 PDF objects out of 1000 (max. 8388607)
- 50 named destinations out of 1000 (max. 500000)
+ 265 PDF objects out of 1000 (max. 8388607)
+ 51 named destinations out of 1000 (max. 500000)
  202 words of extra memory for PDF output out of 10000 (max. 10000000)
 
