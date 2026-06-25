@@ -48,10 +48,11 @@ def estado_inicial(consulta: str) -> dict:
     }
 
 
+"""
 # Prueba
 if __name__ == "__main__":
     # Instanciar el estado
-    estado = estado_inicial("I'm looking for a automatic SUV for less than $15,000")
+    estado = estado_inicial("busco un SUV automático por menos de $15,000")
 
     print("Estado inicial creado correctamente:")
     for clave, valor in estado.items():
@@ -60,3 +61,4 @@ if __name__ == "__main__":
     print("\nCampos del EstadoAgente:")
     for campo in EstadoAgente.__annotations__:
         print(f"  {campo}")
+"""
