@@ -1,10 +1,10 @@
 # Resumen de validación del agente
 
-- Sesiones registradas: **1**
-- Turnos totales: **6**
+- Sesiones registradas: **2**
+- Turnos totales: **21**
 
 | task                |   turnos |   tasa_exito |   reintentos_promedio |   tiempo_promedio_s |   tiempo_max_s |   hubo_error_pct |
 |:--------------------|---------:|-------------:|----------------------:|--------------------:|---------------:|-----------------:|
-| buscar_vehiculos    |        3 |         66.7 |                  0.67 |              353.96 |         785.57 |             66.7 |
-| estimar_precio      |        2 |        100   |                  0    |              102.07 |         126.51 |             50   |
-| explicar_prediccion |        1 |        100   |                  0    |              131.99 |         131.99 |              0   |
+| buscar_vehiculos    |        8 |         62.5 |                  0.75 |              328.86 |         785.57 |             62.5 |
+| estimar_precio      |        7 |        100   |                  0    |              585.79 |        1293.19 |             57.1 |
+| explicar_prediccion |        6 |        100   |                  0    |              275.44 |         467.91 |             16.7 |

@@ -5,3 +5,18 @@ id_sesion,turno,timestamp,consulta,task,validacion_ok,reintentos,tiempo_s,hubo_e
 20260626_104534,4,2026-06-26T11:06:15,"tengo $12,000 y quiero un Toyota económico con menos de 80,000 km",buscar_vehiculos,True,0,785.569,False
 20260626_104534,5,2026-06-26T11:09:46,"busco un Ferrari eléctrico por menos de $5,000",buscar_vehiculos,False,2,147.926,True
 20260626_104534,6,2026-06-26T11:12:09,vendo un Ford F-150 2019 en excelente condicion con 35000 millas,estimar_precio,True,0,77.639,False
+20260626_151643,1,2026-06-26T15:24:58,"Busco un SUV automático por menos de $12,500",buscar_vehiculos,True,0,206.322,True
+20260626_151643,2,2026-06-26T15:33:52,¿El kilometraje afectó mucho el precio calculado?,explicar_prediccion,True,0,467.907,True
+20260626_151643,3,2026-06-26T15:40:30,"Quiero un Toyota de menos de $12,000 con bajo kilometraje.",buscar_vehiculos,True,0,351.069,False
+20260626_151643,4,2026-06-26T15:49:04,"Estoy buscando una pickup 4WD de menos de $20,000.",buscar_vehiculos,False,2,502.312,True
+20260626_151643,5,2026-06-26T15:55:11,"Necesito un vehículo híbrido automático por menos de $18,000.",buscar_vehiculos,True,0,297.943,False
+20260626_151643,6,2026-06-26T15:59:13,"Busco un sedán Honda con transmisión manual y menos de 100,000 millas.",buscar_vehiculos,False,2,211.345,True
+20260626_151643,7,2026-06-26T16:10:42,"¿Cuánto vale un Toyota Camry 2019 con 50,000 millas?",estimar_precio,True,0,639.506,True
+20260626_151643,8,2026-06-26T16:18:54,¿Por qué ese Toyota Camry tiene ese precio estimado?,explicar_prediccion,True,0,454.683,False
+20260626_151643,9,2026-06-26T16:40:47,"Quiero vender un Honda Civic 2018 automático con 80,000 km.",estimar_precio,True,0,1293.191,False
+20260626_151643,10,2026-06-26T16:44:34,¿Por qué este Honda Civic vale menos que un modelo más reciente?,explicar_prediccion,True,0,181.111,False
+20260626_151643,11,2026-06-26T16:59:49,"¿Cuál sería el precio de mercado de una Ford F-150 2020 con 70,000 millas y título limpio?",estimar_precio,True,0,880.414,True
+20260626_151643,12,2026-06-26T17:06:11,Explícame qué factores influyeron más en la valoración de este vehículo.,explicar_prediccion,True,0,218.545,False
+20260626_151643,13,2026-06-26T17:08:44,"Tengo un Chevrolet Malibu (sedan y automático) 2017 en condición excellent con 95,000 millas. ¿Cuánto podría pedir por él?",estimar_precio,True,0,119.52,True
+20260626_151643,14,2026-06-26T17:13:29,¿Cómo impactan el año y la condición del vehículo en el precio estimado?,explicar_prediccion,True,0,198.416,False
+20260626_151643,15,2026-06-26T17:30:44,"¿Cuánto vale un Tesla Model 3(sedan y automático) 2021 eléctrico con 40,000 millas?",estimar_precio,True,0,963.736,False

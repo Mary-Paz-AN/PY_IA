@@ -1,0 +1,716 @@
+[Evidencia] Transcripción de esta sesión: logs\sesion_20260626_151643.txt
+[Evidencia] Traza estructurada (JSONL): logs\sesion_20260626_151643.jsonl
+[Evidencia] Métricas acumuladas (CSV): logs\metricas.csv
+
+------------------------------------------------------------------------------------------
+  Agente de Recomendación y Predicción de Vehículos Usados
+------------------------------------------------------------------------------------------
+Funciones:
+- Buscar vehículos: 'busco un SUV automático por menos de $15,000'
+- Estimar precio: 'cuánto vale un Toyota Camry 2019 con 50k millas'
+- Explicar precio: 'por qué ese carro vale eso'
+Nota: Escribí 'salir' para terminar
+------------------------------------------------------------------------------------------
+
+ Usted: 
+[Planner] Procesando: 'Busco un SUV automático por menos de $12,500'
+[Planner] Task: buscar_vehiculos | Parámetros: {"type": "SUV", "transmission": "automatic", "precio_max": 12500}
+
+[Executor] Tool seleccionada: buscar_vehiculos
+[Executor] Parámetros recibidos: {'type': 'SUV', 'transmission': 'automatic', 'precio_max': 12500}
+[Executor] Llamando buscar_vehiculos con: {'precio_max': 12500, 'precio_min': None, 'manufacturer': None, 'type': 'SUV', 'fuel': None, 'transmission': 'automatic', 'condition_min': 'good', 'year_min': None, 'max_resultados': 5}
+[Executor] Tool ejecutada exitosamente
+
+[Verifier] Validando resultado de 'buscar_vehiculos' (reintento 0/2)
+[Verifier] Typos corregidos: ["Se corrigió 'type': 'suv' por 'SUV'"]
+[Verifier] Validación OK. 1 advertencia(s)
+
+Agente: 
+Se encontraron 17,904 vehículos que coinciden con su búsqueda.
+Aquí están las mejores 5 opciones:
+
+1. Chevrolet Trax (2020)
+ Precio: $11,500
+ Odómetro: 2,000 millas
+ Condición: like new
+ Tipo: SUV
+
+2. Chevrolet Equinox (2020)
+ Precio: $4,500
+ Odómetro: 4,790 millas
+ Condición: like new
+ Tipo: SUV
+
+3. Buick Encore (2019)
+ Precio: $10,999
+ Odómetro: 21,930 millas
+ Condición: excellent
+ Tipo: SUV
+
+4. Honda Pilot Elite (2019)
+ Precio: $12,500
+ Odómetro: 22,964 millas
+ Condición: excellent
+ Tipo: SUV
+
+5. Honda Pilot Elite (2019)
+ Precio: $12,500
+ Odómetro: 22,964 millas
+ Condición: excellent
+ Tipo: SUV
+
+
+ Advertencia(s):
+   - Se corrigió 'type': 'suv' por 'SUV'
+
+ Usted: [Memoria] 2 mensaje(s) recuperado(s)
+[Memoria] HumanMessage
+[Memoria] AIMessage
+
+[Planner] Procesando: '¿El kilometraje afectó mucho el precio calculado?'
+[Planner] Task: explicar_prediccion | Parámetros: {"manufacturer": "honda", "year": 2019, "type": "SUV", "odometer": 22964, "condition": "excellent"}
+
+[Executor] Tool seleccionada: explicar_prediccion
+[Executor] Parámetros recibidos: {'manufacturer': 'honda', 'year': 2019, 'type': 'SUV', 'odometer': 22964, 'condition': 'excellent'}
+[Executor] Llamando explicar_prediccion con: {'year': 2019, 'manufacturer': 'honda', 'model': 'unknown', 'condition': 'excellent', 'cylinders': '6 cylinders', 'fuel': 'gas', 'odometer': 22964, 'title_status': 'clean', 'transmission': 'automatic', 'drive': '4wd', 'type': 'SUV', 'paint_color': 'white', 'region': 'unknown', 'state': 'ca'}
+[Executor] Tool ejecutada exitosamente
+
+[Verifier] Validando resultado de 'explicar_prediccion' (reintento 0/2)
+[Verifier] Typos corregidos: ["Se corrigió 'type': 'suv' por 'SUV'"]
+[Verifier] Validación OK. 1 advertencia(s)
+
+Agente: 
+Precio estimado: $29,736.14
+Precio base del mercado: $19,808.84
+
+Factores que explican el precio:
+⬆ year                         +$9,526.34  (sube el precio)
+⬆ odometer                     +$3,224.20  (sube el precio)
+⬇ manufacturer_honda           $-2,193.26  (baja el precio)
+⬇ fuel_gas                     $-1,998.91  (baja el precio)
+⬆ type_sedan                   +$955.40  (sube el precio)
+
+ Advertencia(s):
+   - Se corrigió 'type': 'suv' por 'SUV'
+
+ Usted: [Memoria] 4 mensaje(s) recuperado(s)
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+
+[Planner] Procesando: 'Quiero un Toyota de menos de $12,000 con bajo kilometraje.'
+[Planner] Task: buscar_vehiculos | Parámetros: {"manufacturer": "toyota", "precio_max": 12000}
+
+[Executor] Tool seleccionada: buscar_vehiculos
+[Executor] Parámetros recibidos: {'manufacturer': 'toyota', 'precio_max': 12000}
+[Executor] Llamando buscar_vehiculos con: {'precio_max': 12000, 'precio_min': None, 'manufacturer': 'toyota', 'type': None, 'fuel': None, 'transmission': None, 'condition_min': 'good', 'year_min': None, 'max_resultados': 5}
+[Executor] Tool ejecutada exitosamente
+
+[Verifier] Validando resultado de 'buscar_vehiculos' (reintento 0/2)
+[Verifier] Validación OK. 0 advertencia(s)
+
+Agente: 
+Se encontraron 8,466 vehículos que coinciden con su búsqueda.
+Aquí están las mejores 5 opciones:
+
+1. Toyota Tacoma Limited (2020)
+ Precio: $6,500
+ Odómetro: 40,588 millas
+ Condición: like new
+ Tipo: pickup
+
+2. Toyota Yaris Ia Sedan (2018)
+ Precio: $9,950
+ Odómetro: 17,569 millas
+ Condición: good
+ Tipo: sedan
+
+3. Toyota Corolla Le (2018)
+ Precio: $11,995
+ Odómetro: 19,000 millas
+ Condición: excellent
+ Tipo: sedan
+
+4. Toyota Corolla Le (2016)
+ Precio: $10,995
+ Odómetro: 999 millas
+ Condición: excellent
+ Tipo: sedan
+
+5. Toyota Corolla (2017)
+ Precio: $10,900
+ Odómetro: 21,000 millas
+ Condición: like new
+ Tipo: nan
+
+
+ Usted: [Memoria] 6 mensaje(s) recuperado(s)
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+
+[Planner] Procesando: 'Estoy buscando una pickup 4WD de menos de $20,000.'
+[Planner] Task: buscar_vehiculos | Parámetros: {"type": "pickup", "drive": "4wd", "precio_max": 20000}
+
+[Executor] Tool seleccionada: buscar_vehiculos
+[Executor] Parámetros recibidos: {'type': 'pickup', 'drive': '4wd', 'precio_max': 20000}
+[Executor] Llamando buscar_vehiculos con: {'precio_max': 20000, 'precio_min': None, 'manufacturer': None, 'type': 'pickup', 'fuel': None, 'transmission': None, 'condition_min': 'good', 'year_min': None, 'max_resultados': 5, 'drive': '4wd'}
+[Executor] Error al ejecutar 'buscar_vehiculos': buscar_vehiculos() got an unexpected keyword argument 'drive'
+
+[Verifier] Validando resultado de 'buscar_vehiculos' (reintento 0/2)
+[Verifier] Error crítico detectado: Error al ejecutar la herramienta 'buscar_vehiculos': buscar_vehiculos() got an unexpected keyword argument 'drive'
+[Verifier] Reintentando... se aumentó el precio máximo un 20% a $24,000
+
+[Executor] Tool seleccionada: buscar_vehiculos
+[Executor] Parámetros recibidos: {'type': 'pickup', 'drive': '4wd', 'precio_max': 24000.0}
+[Executor] Llamando buscar_vehiculos con: {'precio_max': 24000.0, 'precio_min': None, 'manufacturer': None, 'type': 'pickup', 'fuel': None, 'transmission': None, 'condition_min': 'good', 'year_min': None, 'max_resultados': 5, 'drive': '4wd'}
+[Executor] Error al ejecutar 'buscar_vehiculos': buscar_vehiculos() got an unexpected keyword argument 'drive'
+
+[Verifier] Validando resultado de 'buscar_vehiculos' (reintento 1/2)
+[Verifier] Error crítico detectado: Error al ejecutar la herramienta 'buscar_vehiculos': buscar_vehiculos() got an unexpected keyword argument 'drive'
+[Verifier] Reintentando... se aumentó el precio máximo un 20% a $28,800
+
+[Executor] Tool seleccionada: buscar_vehiculos
+[Executor] Parámetros recibidos: {'type': 'pickup', 'drive': '4wd', 'precio_max': 28800.0}
+[Executor] Llamando buscar_vehiculos con: {'precio_max': 28800.0, 'precio_min': None, 'manufacturer': None, 'type': 'pickup', 'fuel': None, 'transmission': None, 'condition_min': 'good', 'year_min': None, 'max_resultados': 5, 'drive': '4wd'}
+[Executor] Error al ejecutar 'buscar_vehiculos': buscar_vehiculos() got an unexpected keyword argument 'drive'
+
+[Verifier] Validando resultado de 'buscar_vehiculos' (reintento 2/2)
+[Verifier] Error crítico detectado: Error al ejecutar la herramienta 'buscar_vehiculos': buscar_vehiculos() got an unexpected keyword argument 'drive'
+
+Agente: 
+Lo siento, no pude completar su solicitud después de 2 intentos. Por favor, intenta reformular su consulta.
+
+ Usted: [Memoria] 8 mensaje(s) recuperado(s)
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+
+[Planner] Procesando: 'Necesito un vehículo híbrido automático por menos de $18,000.'
+[Planner] Task: buscar_vehiculos | Parámetros: {"fuel": "hybrid", "transmission": "automatic", "precio_max": 18000}
+
+[Executor] Tool seleccionada: buscar_vehiculos
+[Executor] Parámetros recibidos: {'fuel': 'hybrid', 'transmission': 'automatic', 'precio_max': 18000}
+[Executor] Llamando buscar_vehiculos con: {'precio_max': 18000, 'precio_min': None, 'manufacturer': None, 'type': None, 'fuel': 'hybrid', 'transmission': 'automatic', 'condition_min': 'good', 'year_min': None, 'max_resultados': 5}
+[Executor] Tool ejecutada exitosamente
+
+[Verifier] Validando resultado de 'buscar_vehiculos' (reintento 0/2)
+[Verifier] Validación OK. 0 advertencia(s)
+
+Agente: 
+Se encontraron 1,821 vehículos que coinciden con su búsqueda.
+Aquí están las mejores 5 opciones:
+
+1. Tesla S (2021)
+ Precio: $15,000
+ Odómetro: 15,000 millas
+ Condición: new
+ Tipo: nan
+
+2. Tesla S (2021)
+ Precio: $15,000
+ Odómetro: 15,000 millas
+ Condición: new
+ Tipo: nan
+
+3. Toyota Prius Xle Awd Hatchback (2019)
+ Precio: $17,900
+ Odómetro: 14,500 millas
+ Condición: good
+ Tipo: hatchback
+
+4. Toyota Prius Xle Awd Hatchback (2019)
+ Precio: $17,900
+ Odómetro: 14,500 millas
+ Condición: good
+ Tipo: hatchback
+
+5. Chevrolet Equinox (2019)
+ Precio: $16,000
+ Odómetro: 26,000 millas
+ Condición: like new
+ Tipo: SUV
+
+
+ Usted: [Memoria] 10 mensaje(s) recuperado(s)
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+
+[Planner] Procesando: 'Busco un sedán Honda con transmisión manual y menos de 100,000 millas.'
+[Planner] Task: buscar_vehiculos | Parámetros: {"manufacturer": "honda", "type": "sedan", "transmission": "manual", "odometer": 100000}
+
+[Executor] Tool seleccionada: buscar_vehiculos
+[Executor] Parámetros recibidos: {'manufacturer': 'honda', 'type': 'sedan', 'transmission': 'manual', 'odometer': 100000}
+[Executor] Llamando buscar_vehiculos con: {'precio_max': None, 'precio_min': None, 'manufacturer': 'honda', 'type': 'sedan', 'fuel': None, 'transmission': 'manual', 'condition_min': 'good', 'year_min': None, 'max_resultados': 5, 'odometer': 100000}
+[Executor] Error al ejecutar 'buscar_vehiculos': buscar_vehiculos() got an unexpected keyword argument 'odometer'
+
+[Verifier] Validando resultado de 'buscar_vehiculos' (reintento 0/2)
+[Verifier] Error crítico detectado: Error al ejecutar la herramienta 'buscar_vehiculos': buscar_vehiculos() got an unexpected keyword argument 'odometer'
+[Verifier] Reintentando... se eliminó el filtro de transmisión
+
+[Executor] Tool seleccionada: buscar_vehiculos
+[Executor] Parámetros recibidos: {'manufacturer': 'honda', 'type': 'sedan', 'transmission': None, 'odometer': 100000}
+[Executor] Llamando buscar_vehiculos con: {'precio_max': None, 'precio_min': None, 'manufacturer': 'honda', 'type': 'sedan', 'fuel': None, 'transmission': None, 'condition_min': 'good', 'year_min': None, 'max_resultados': 5, 'odometer': 100000}
+[Executor] Error al ejecutar 'buscar_vehiculos': buscar_vehiculos() got an unexpected keyword argument 'odometer'
+
+[Verifier] Validando resultado de 'buscar_vehiculos' (reintento 1/2)
+[Verifier] Error crítico detectado: Error al ejecutar la herramienta 'buscar_vehiculos': buscar_vehiculos() got an unexpected keyword argument 'odometer'
+[Verifier] Reintentando... se eliminó el filtro de fabricante
+
+[Executor] Tool seleccionada: buscar_vehiculos
+[Executor] Parámetros recibidos: {'manufacturer': None, 'type': 'sedan', 'transmission': None, 'odometer': 100000}
+[Executor] Llamando buscar_vehiculos con: {'precio_max': None, 'precio_min': None, 'manufacturer': None, 'type': 'sedan', 'fuel': None, 'transmission': None, 'condition_min': 'good', 'year_min': None, 'max_resultados': 5, 'odometer': 100000}
+[Executor] Error al ejecutar 'buscar_vehiculos': buscar_vehiculos() got an unexpected keyword argument 'odometer'
+
+[Verifier] Validando resultado de 'buscar_vehiculos' (reintento 2/2)
+[Verifier] Error crítico detectado: Error al ejecutar la herramienta 'buscar_vehiculos': buscar_vehiculos() got an unexpected keyword argument 'odometer'
+
+Agente: 
+Lo siento, no pude completar su solicitud después de 2 intentos. Por favor, intenta reformular su consulta.
+
+ Usted: [Memoria] 12 mensaje(s) recuperado(s)
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+
+[Planner] Procesando: '¿Cuánto vale un Toyota Camry 2019 con 50,000 millas?'
+[Planner] Task: estimar_precio | Parámetros: {"manufacturer": "toyota", "year": 2019, "odometer": 50000}
+
+[Executor] Tool seleccionada: estimar_precio
+[Executor] Parámetros recibidos: {'manufacturer': 'toyota', 'year': 2019, 'odometer': 50000}
+[Executor] Llamando estimar_precio con: {'year': 2019, 'manufacturer': 'toyota', 'model': 'unknown', 'condition': 'good', 'cylinders': '6 cylinders', 'fuel': 'gas', 'odometer': 50000, 'title_status': 'clean', 'transmission': 'automatic', 'drive': '4wd', 'type': 'sedan', 'paint_color': 'white', 'region': 'unknown', 'state': 'ca'}
+[Executor] Tool ejecutada exitosamente
+
+[Verifier] Validando resultado de 'estimar_precio' (reintento 0/2)
+[Verifier] Validación OK. 1 advertencia(s)
+
+Agente: 
+Precio estimado de mercado: $26,461.66
+Rango de confianza: $22,462 – $30,462 (basado en el error promedio del modelo de ±$4,000)
+
+Características consideradas:
+   • year            : 2019
+   • manufacturer    : toyota
+   • condition       : good
+   • cylinders       : 6 cylinders
+   • fuel            : gas
+   • odometer        : 50000
+   • transmission    : automatic
+   • drive           : 4wd
+   • type            : sedan
+
+ Advertencia(s):
+   - Se usó 'sedan' como tipo por defecto. Si su vehículo es de otro tipo (pickup, SUV, truck), especifiquelo para una estimación más precisa.
+
+ Usted: [Memoria] 14 mensaje(s) recuperado(s)
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+
+[Planner] Procesando: '¿Por qué ese Toyota Camry tiene ese precio estimado?'
+[Planner] Task: explicar_prediccion | Parámetros: {"manufacturer": "toyota", "year": 2019, "condition": "good", "cylinders": "6 cylinders", "fuel": "gas", "odometer": 50000, "transmission": "automatic", "drive": "4wd", "type": "sedan", "title_status": "clean"}
+
+[Executor] Tool seleccionada: explicar_prediccion
+[Executor] Parámetros recibidos: {'manufacturer': 'toyota', 'year': 2019, 'condition': 'good', 'cylinders': '6 cylinders', 'fuel': 'gas', 'odometer': 50000, 'transmission': 'automatic', 'drive': '4wd', 'type': 'sedan', 'title_status': 'clean'}
+[Executor] Llamando explicar_prediccion con: {'year': 2019, 'manufacturer': 'toyota', 'model': 'unknown', 'condition': 'good', 'cylinders': '6 cylinders', 'fuel': 'gas', 'odometer': 50000, 'title_status': 'clean', 'transmission': 'automatic', 'drive': '4wd', 'type': 'sedan', 'paint_color': 'white', 'region': 'unknown', 'state': 'ca'}
+[Executor] Tool ejecutada exitosamente
+
+[Verifier] Validando resultado de 'explicar_prediccion' (reintento 0/2)
+[Verifier] Validación OK. 0 advertencia(s)
+
+Agente: 
+Precio estimado: $26,461.66
+Precio base del mercado: $19,808.84
+
+Factores que explican el precio:
+⬆ year                         +$9,524.40  (sube el precio)
+⬇ type_sedan                   $-1,984.64  (baja el precio)
+⬇ fuel_gas                     $-1,936.73  (baja el precio)
+⬆ drive_fwd                    +$1,068.83  (sube el precio)
+⬆ odometer                     +$835.77  (sube el precio)
+
+ Usted: [Memoria] 16 mensaje(s) recuperado(s)
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+
+[Planner] Procesando: 'Quiero vender un Honda Civic 2018 automático con 80,000 km.'
+[Planner] Task: estimar_precio | Parámetros: {"manufacturer": "honda", "year": 2018, "odometer": 49709.68, "transmission": "automatic", "type": "sedan", "fuel": "gas", "cylinders": "4 cylinders", "condition": "good", "drive": "fwd", "title_status": "clean"}
+
+[Executor] Tool seleccionada: estimar_precio
+[Executor] Parámetros recibidos: {'manufacturer': 'honda', 'year': 2018, 'odometer': 49709.68, 'transmission': 'automatic', 'type': 'sedan', 'fuel': 'gas', 'cylinders': '4 cylinders', 'condition': 'good', 'drive': 'fwd', 'title_status': 'clean'}
+[Executor] Llamando estimar_precio con: {'year': 2018, 'manufacturer': 'honda', 'model': 'unknown', 'condition': 'good', 'cylinders': '4 cylinders', 'fuel': 'gas', 'odometer': 49709.68, 'title_status': 'clean', 'transmission': 'automatic', 'drive': 'fwd', 'type': 'sedan', 'paint_color': 'white', 'region': 'unknown', 'state': 'ca'}
+[Executor] Tool ejecutada exitosamente
+
+[Verifier] Validando resultado de 'estimar_precio' (reintento 0/2)
+[Verifier] Validación OK. 0 advertencia(s)
+
+Agente: 
+Precio estimado de mercado: $18,863.03
+Rango de confianza: $14,863 – $22,863 (basado en el error promedio del modelo de ±$4,000)
+
+Características consideradas:
+   • year            : 2018
+   • manufacturer    : honda
+   • condition       : good
+   • cylinders       : 4 cylinders
+   • fuel            : gas
+   • odometer        : 49709.68
+   • transmission    : automatic
+   • drive           : fwd
+   • type            : sedan
+
+ Usted: [Memoria] 18 mensaje(s) recuperado(s)
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+
+[Planner] Procesando: '¿Por qué este Honda Civic vale menos que un modelo más reciente?'
+[Planner] Task: explicar_prediccion | Parámetros: {"manufacturer": "honda", "year": 2018, "condition": "good", "cylinders": "4 cylinders", "fuel": "gas", "odometer": 49709.68, "transmission": "automatic", "drive": "fwd", "type": "sedan"}
+
+[Executor] Tool seleccionada: explicar_prediccion
+[Executor] Parámetros recibidos: {'manufacturer': 'honda', 'year': 2018, 'condition': 'good', 'cylinders': '4 cylinders', 'fuel': 'gas', 'odometer': 49709.68, 'transmission': 'automatic', 'drive': 'fwd', 'type': 'sedan'}
+[Executor] Llamando explicar_prediccion con: {'year': 2018, 'manufacturer': 'honda', 'model': 'unknown', 'condition': 'good', 'cylinders': '4 cylinders', 'fuel': 'gas', 'odometer': 49709.68, 'title_status': 'clean', 'transmission': 'automatic', 'drive': 'fwd', 'type': 'sedan', 'paint_color': 'white', 'region': 'unknown', 'state': 'ca'}
+[Executor] Tool ejecutada exitosamente
+
+[Verifier] Validando resultado de 'explicar_prediccion' (reintento 0/2)
+[Verifier] Validación OK. 0 advertencia(s)
+
+Agente: 
+Precio estimado: $18,863.03
+Precio base del mercado: $19,808.84
+
+Factores que explican el precio:
+⬆ year                         +$6,604.46  (sube el precio)
+⬇ cylinders                    $-4,761.41  (baja el precio)
+⬇ drive_fwd                    $-2,260.66  (baja el precio)
+⬆ odometer                     +$1,115.18  (sube el precio)
+⬇ fuel_gas                     $-1,058.39  (baja el precio)
+
+ Usted: [Memoria] 20 mensaje(s) recuperado(s)
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+
+[Planner] Procesando: '¿Cuál sería el precio de mercado de una Ford F-150 2020 con 70,000 millas y título limpio?'
+[Planner] Task: estimar_precio | Parámetros: {"manufacturer": "ford", "year": 2020, "odometer": 70000, "title_status": "clean"}
+
+[Executor] Tool seleccionada: estimar_precio
+[Executor] Parámetros recibidos: {'manufacturer': 'ford', 'year': 2020, 'odometer': 70000, 'title_status': 'clean'}
+[Executor] Llamando estimar_precio con: {'year': 2020, 'manufacturer': 'ford', 'model': 'unknown', 'condition': 'good', 'cylinders': '6 cylinders', 'fuel': 'gas', 'odometer': 70000, 'title_status': 'clean', 'transmission': 'automatic', 'drive': '4wd', 'type': 'sedan', 'paint_color': 'white', 'region': 'unknown', 'state': 'ca'}
+[Executor] Tool ejecutada exitosamente
+
+[Verifier] Validando resultado de 'estimar_precio' (reintento 0/2)
+[Verifier] Validación OK. 1 advertencia(s)
+
+Agente: 
+Precio estimado de mercado: $36,363.53
+Rango de confianza: $32,364 – $40,364 (basado en el error promedio del modelo de ±$4,000)
+
+Características consideradas:
+   • year            : 2020
+   • manufacturer    : ford
+   • condition       : good
+   • cylinders       : 6 cylinders
+   • fuel            : gas
+   • odometer        : 70000
+   • transmission    : automatic
+   • drive           : 4wd
+   • type            : sedan
+
+ Advertencia(s):
+   - Se usó 'sedan' como tipo por defecto. Si su vehículo es de otro tipo (pickup, SUV, truck), especifiquelo para una estimación más precisa.
+
+ Usted: [Memoria] 22 mensaje(s) recuperado(s)
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+
+[Planner] Procesando: 'Explícame qué factores influyeron más en la valoración de este vehículo.'
+[Planner] Task: explicar_prediccion | Parámetros: {"manufacturer": "ford", "year": 2020, "condition": "good", "cylinders": "6 cylinders", "fuel": "gas", "odometer": 70000, "transmission": "automatic", "drive": "4wd", "type": "sedan", "title_status": "clean"}
+
+[Executor] Tool seleccionada: explicar_prediccion
+[Executor] Parámetros recibidos: {'manufacturer': 'ford', 'year': 2020, 'condition': 'good', 'cylinders': '6 cylinders', 'fuel': 'gas', 'odometer': 70000, 'transmission': 'automatic', 'drive': '4wd', 'type': 'sedan', 'title_status': 'clean'}
+[Executor] Llamando explicar_prediccion con: {'year': 2020, 'manufacturer': 'ford', 'model': 'unknown', 'condition': 'good', 'cylinders': '6 cylinders', 'fuel': 'gas', 'odometer': 70000, 'title_status': 'clean', 'transmission': 'automatic', 'drive': '4wd', 'type': 'sedan', 'paint_color': 'white', 'region': 'unknown', 'state': 'ca'}
+[Executor] Tool ejecutada exitosamente
+
+[Verifier] Validando resultado de 'explicar_prediccion' (reintento 0/2)
+[Verifier] Validación OK. 0 advertencia(s)
+
+Agente: 
+Precio estimado: $36,363.53
+Precio base del mercado: $19,808.84
+
+Factores que explican el precio:
+⬆ year                         +$12,761.24  (sube el precio)
+⬆ manufacturer_ford            +$2,023.18  (sube el precio)
+⬆ drive_fwd                    +$1,987.96  (sube el precio)
+⬇ fuel_gas                     $-1,783.67  (baja el precio)
+⬆ cylinders                    +$653.15  (sube el precio)
+
+ Usted: [Memoria] 24 mensaje(s) recuperado(s)
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+
+[Planner] Procesando: 'Tengo un Chevrolet Malibu (sedan y automático) 2017 en condición excellent con 95,000 millas. ¿Cuánto podría pedir por él?'
+[Planner] Task: estimar_precio | Parámetros: {"manufacturer": "chevrolet", "year": 2017, "condition": "excellent", "odometer": 95000, "transmission": "automatic"}
+
+[Executor] Tool seleccionada: estimar_precio
+[Executor] Parámetros recibidos: {'manufacturer': 'chevrolet', 'year': 2017, 'condition': 'excellent', 'odometer': 95000, 'transmission': 'automatic'}
+[Executor] Llamando estimar_precio con: {'year': 2017, 'manufacturer': 'chevrolet', 'model': 'unknown', 'condition': 'excellent', 'cylinders': '6 cylinders', 'fuel': 'gas', 'odometer': 95000, 'title_status': 'clean', 'transmission': 'automatic', 'drive': '4wd', 'type': 'sedan', 'paint_color': 'white', 'region': 'unknown', 'state': 'ca'}
+[Executor] Tool ejecutada exitosamente
+
+[Verifier] Validando resultado de 'estimar_precio' (reintento 0/2)
+[Verifier] Validación OK. 1 advertencia(s)
+
+Agente: 
+Precio estimado de mercado: $23,308.83
+Rango de confianza: $19,309 – $27,309 (basado en el error promedio del modelo de ±$4,000)
+
+Características consideradas:
+   • year            : 2017
+   • manufacturer    : chevrolet
+   • condition       : excellent
+   • cylinders       : 6 cylinders
+   • fuel            : gas
+   • odometer        : 95000
+   • transmission    : automatic
+   • drive           : 4wd
+   • type            : sedan
+
+ Advertencia(s):
+   - Se usó 'sedan' como tipo por defecto. Si su vehículo es de otro tipo (pickup, SUV, truck), especifiquelo para una estimación más precisa.
+
+ Usted: [Memoria] 26 mensaje(s) recuperado(s)
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+
+[Planner] Procesando: '¿Cómo impactan el año y la condición del vehículo en el precio estimado?'
+[Planner] Task: explicar_prediccion | Parámetros: {"manufacturer": "chevrolet", "year": 2017, "condition": "excellent", "cylinders": "6 cylinders", "fuel": "gas", "odometer": 95000, "transmission": "automatic", "drive": "4wd", "type": "sedan"}
+
+[Executor] Tool seleccionada: explicar_prediccion
+[Executor] Parámetros recibidos: {'manufacturer': 'chevrolet', 'year': 2017, 'condition': 'excellent', 'cylinders': '6 cylinders', 'fuel': 'gas', 'odometer': 95000, 'transmission': 'automatic', 'drive': '4wd', 'type': 'sedan'}
+[Executor] Llamando explicar_prediccion con: {'year': 2017, 'manufacturer': 'chevrolet', 'model': 'unknown', 'condition': 'excellent', 'cylinders': '6 cylinders', 'fuel': 'gas', 'odometer': 95000, 'title_status': 'clean', 'transmission': 'automatic', 'drive': '4wd', 'type': 'sedan', 'paint_color': 'white', 'region': 'unknown', 'state': 'ca'}
+[Executor] Tool ejecutada exitosamente
+
+[Verifier] Validando resultado de 'explicar_prediccion' (reintento 0/2)
+[Verifier] Validación OK. 0 advertencia(s)
+
+Agente: 
+Precio estimado: $23,308.83
+Precio base del mercado: $19,808.84
+
+Factores que explican el precio:
+⬆ year                         +$6,321.20  (sube el precio)
+⬇ fuel_gas                     $-2,376.06  (baja el precio)
+⬇ odometer                     $-1,782.05  (baja el precio)
+⬆ drive_fwd                    +$1,573.62  (sube el precio)
+⬆ fuel_other                   +$481.36  (sube el precio)
+
+ Usted: [Memoria] 28 mensaje(s) recuperado(s)
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+[Memoria] HumanMessage
+[Memoria] AIMessage
+
+[Planner] Procesando: '¿Cuánto vale un Tesla Model 3(sedan y automático) 2021 eléctrico con 40,000 millas?'
+[Planner] Task: estimar_precio | Parámetros: {"manufacturer": "tesla", "year": 2021, "type": "sedan", "transmission": "automatic", "fuel": "electric", "odometer": 40000}
+
+[Executor] Tool seleccionada: estimar_precio
+[Executor] Parámetros recibidos: {'manufacturer': 'tesla', 'year': 2021, 'type': 'sedan', 'transmission': 'automatic', 'fuel': 'electric', 'odometer': 40000}
+[Executor] Llamando estimar_precio con: {'year': 2021, 'manufacturer': 'tesla', 'model': 'unknown', 'condition': 'good', 'cylinders': '6 cylinders', 'fuel': 'electric', 'odometer': 40000, 'title_status': 'clean', 'transmission': 'automatic', 'drive': '4wd', 'type': 'sedan', 'paint_color': 'white', 'region': 'unknown', 'state': 'ca'}
+[Executor] Tool ejecutada exitosamente
+
+[Verifier] Validando resultado de 'estimar_precio' (reintento 0/2)
+[Verifier] Validación OK. 0 advertencia(s)
+
+Agente: 
+Precio estimado de mercado: $41,644.23
+Rango de confianza: $37,644 – $45,644 (basado en el error promedio del modelo de ±$4,000)
+
+Características consideradas:
+   • year            : 2021
+   • manufacturer    : tesla
+   • condition       : good
+   • cylinders       : 6 cylinders
+   • fuel            : electric
+   • odometer        : 40000
+   • transmission    : automatic
+   • drive           : 4wd
+   • type            : sedan
+
+ Usted: 
+Adios! Suerte con la búsqueda de vehículos.
+
+[Evidencia] Sesión guardada en logs/ (id: 20260626_151643)
