@@ -72,20 +72,14 @@ Machine Learning, LightGBM, Sistema de Recomendación, SHAP, Agente Inteligente,
 %----------------------------------------------------
 \section{Introducción}
 
-La adquisición de vehículos usados es parte de una de las decisioness financieras más significativas para los consumidores, especialmente en situaciones donde el acceso a vehículos nuevos es limitado por su costo. En mercados como el estadounidense, plataformas de clasificados en línea como Craigslist concentran cientos de miles de anuncios de venta con características heterogéneas, lo que dificulta que un comprador pueda evaluar objetivamente si un vehículo representa una oferta razonable dentro de su presupuesto.
+La adquisición de vehículos usados es parte de una de las decisioness financieras más significativas para los consumidores, especialmente en situaciones donde el acceso a vehículos nuevos es limitado por su costo. En mercados como el estadounidense, plataformas de clasificados en línea como Craigslist concentran númerosos anuncios de venta con distintas características, lo que hace dificil que un comprador pueda evaluar desde un punto de vista objetivo si un vehículo representa una oferta razonable dentro de su presupuesto.
 
-El precio de un vehículo usado no puede estimarse mediante reglas simples, debio a que depende de la interacción no lineal de múltiples  factores: el año de fabricación, el kilometraje acumulado, la marca,  el tipo de carrocería, el estado mecánico declarado y las condiciones del mercado regional, entre otros. Esto hace que los enfoques basados en heurísticas o modelos lineales sean insuficientes para capturar la variabilidad real del mercado.
+El precio de un vehículo usado no puede calcularse de una manera sencilla, debio a que depende de la interacción no lineal de múltiples  factores: el año de fabricación, el kilometraje acumulado, la marca, el tipo de carrocería, el estado mecánico y las condiciones del mercado regional, entre otros. Esto hace que los enfoques basados en heurísticas o modelos lineales no sean suficientes para capturar la variabilidad real del mercado, ya que depende de varios factores.
 
 Ante esta problemática, se propone un sistema de recomendación de vehículos usados basado en técnicas de aprendizaje automático, diseñado para asistir a los compradores en la identificación de vehículos con una relación calidad-precio favorable. El sistema fue desarrollado a partir de un conjunto de datos de 426,880 registros reales provenientes de Craigslist \cite{sulianta2024}, el cual fue sometido a un proceso exhaustivo de limpieza y preprocesamiento que redujo el conjunto de datos a 364,546 registros utilizables. Sobre este conjunto se evaluaron seis modelos de aprendizaje automático, incluyendo Regresión Lineal, Ridge Regresion, Decision Tree, Random Forest, XGBoost y LightGBM, mediante un protocolo de validación temporal estricto. Como resultado, LightGBM \cite{ke2017} fue seleccionado como modelo principal al demostrar el mejor equilibrio entre precisión predictiva y capacidad de generalización. Posteriormente, el modelo fue optimizado mediante búsqueda aleatoria de hiperparámetros y evaluado sobre un conjunto de prueba independiente, obteniendo un error absoluto medio de \$4,000 y un coeficiente de determinación ($R^2$) de 0.762. Estos resultados representan una mejora del 27.4\% con respecto al modelo de referencia.
 
 %ESTO ES SOLO PARA EL AGENTE, SE VA A LLEGAR A CORREGIR SI NO SE LOGRA LO QUE SE PIENSA CON EL AGENTE
-Como componente transversal del sistema, el modelo fue integrado en un 
-agente inteligente con capacidad de \textit{tool calling}, capaz de 
-recibir consultas en lenguaje natural, invocar el modelo de predicción 
-como herramienta y retornar recomendaciones justificadas mediante 
-explicaciones generadas con SHAP \cite{lundberg2017}. Esta integración 
-permite que el sistema no solo prediga precios, sino que explique al 
-usuario los factores que determinan el valor estimado de cada vehículo.
+Como componente transversal del sistema, el modelo fue integrado en un agente inteligente con capacidad de \textit{tool calling}, capaz de recibir consultas en lenguaje natural, invocar el modelo de predicción como herramienta y retornar recomendaciones justificadas mediante explicaciones generadas con SHAP \cite{lundberg2017}. Esta integración permite que el sistema no solo prediga precios, sino que explique al usuario los factores que determinan el valor estimado de cada vehículo.
 
 Las contribuciones principales de este trabajo son las siguientes:
 
@@ -107,17 +101,17 @@ Dentro delarticulo se encuentran las siguientes secciones: la Sección~\ref{sec:
 \label{sec:related}
 
 % Predicción de precios de vehículos usados
-La predicción de precios de vehículos usados mediante aprendizaje automático ha sido abordada desde múltiples enfoques. Cui et al.~\cite{cui2022} propusieron un marco iterativo que combina XGBoost y LightGBM para la predicción de precios bajo grandes volúmenes de características, fusionando las predicciones de una red residual profunda con las features originales como entrada al marco iterativo. Sus experimentos demostraron que esta combinación supera al Random Forest y a las redes residuales individuales en precisión. A diferencia de este enfoque, este trabajo evalúa cada modelo de forma independiente bajo un protocolo  de validación temporal estricto, priorizando la capacidad de generalización sobre datos futuros mediante el análisis del Gap R² como métrica de overfitting.
+La predicción de precios de vehículos usados mediante aprendizaje automático ha sido abordada desde múltiples enfoques. Cui et al.~\cite{cui2022} propusieron un marco iterativo que combina XGBoost y LightGBM para la predicción de precios bajo grandes volúmenes de características, fusionando las predicciones de una red residual profunda con las features originales como entrada al marco iterativo. Sus experimentos demostraron que esta combinación supera al Random Forest y a las redes residuales individuales en precisión. A diferencia de este enfoque, este trabajo evalúa cada modelo de forma independiente por medio de un protocolo de validación temporal estricto, priorizando la capacidad de generalización sobre datos futuros mediante el análisis del Gap R² como métrica de overfitting.
 
-En una línea similar, trabajos previos han comparado múltiples modelos de aprendizaje automático para este problema, incluyendo regresión lineal, K-Nearest Neighbors, Random Forest y XGBoost sobre datasets de vehículos usados de diversas regiones \cite{ijert2022}. Estos estudios coinciden en que los modelos basados en árboles de decisión  superan consistentemente a los modelos lineales, confirmando la necesidad de capturar relaciones no lineales entre las variables del  mercado automotriz. Sin embargo, la mayoría de estos trabajos no implementan partición temporal de los datos ni analizan el riesgo de  data leakage, limitaciones que el presente trabajo aborda explícitamente.
+De igual manera, trabajos previos han comparado múltiples modelos de aprendizaje automático para este problema, incluyendo regresión lineal, K-Nearest Neighbors, Random Forest y XGBoost sobre datasets de vehículos usados de diversas regiones \cite{ijert2022}. Estos estudios coinciden en que los modelos basados en árboles de decisión  superan consistentemente a los modelos lineales, confirmando que es necesario generar relaciones no lineales entre las variables del mercado automotriz. Sin embargo, la mayoría de estos trabajos no implementan partición temporal de los datos ni analizan el riesgo de   data leakage, limitaciones que el presente trabajo aborda explícitamente.
 
 % Algoritmos de boosting
-El algoritmo XGBoost, propuesto por Chen y Guestrin~\cite{chen2016}, introdujo un sistema escalable de gradient boosting basado en árboles  con optimizaciones de caché, compresión de datos y soporte para datos dispersos. Su adopción generalizada en competencias de aprendizaje automático lo convirtió en el punto de referencia para datos tabulares. Posteriormente, Ke et al.~\cite{ke2017} propusieron LightGBM, que supera a XGBoost en eficiencia mediante dos innovaciones algorítmicas: \textit{Gradient-based One-Side Sampling} (GOSS), que reduce el tamaño del conjunto de entrenamiento priorizando instancias con gradientes grandes, y \textit{Exclusive Feature Bundling} (EFB), que reduce el número de features agrupando variables mutuamente excluyentes. Los experimentos de los autores demuestran que LightGBM acelera el entrenamiento hasta 20 veces respecto a GBDT convencional manteniendo una precisión comparable. En el presente trabajo se confirma esta ventaja de velocidad: LightGBM completó la validación cruzada en 11 segundos frente a los 83 segundos de Random Forest sobre un dataset de 255{,}182 registros.
+El algoritmo XGBoost, propuesto por Chen y Guestrin~\cite{chen2016}, introdujo un sistema escalable de gradient boosting basado en árboles  con optimizaciones de caché, compresión de datos y soporte para datos dispersos. Su uso en competencias de aprendizaje automático lo convirtió en el punto de referencia para datos tabulares. Después, Ke et al.~\cite{ke2017} propusieron LightGBM, que supero a XGBoost en eficiencia mediante dos innovaciones algorítmicas: \textit{Gradient-based One-Side Sampling} (GOSS), que reduce el tamaño del conjunto de entrenamiento dando prioridad a instancias con gradientes grandes, y \textit{Exclusive Feature Bundling} (EFB), que reduce el número de features agrupando variables mutuamente excluyentes. Los experimentos de los autores demuestran que LightGBM acelera el entrenamiento hasta 20 veces respecto a GBDT convencional manteniendo una precisión comparable. En el presente trabajo se confirma esta ventaja de velocidad: LightGBM completó la validación cruzada en 11 segundos frente a los 76 segundos de Random Forest sobre un dataset de 255{,}182 registros.
 
 % Explicabilidad con SHAP 
-La explicabilidad de los modelos de aprendizaje automático en aplicaciones de alto impacto ha cobrado relevancia creciente. Lundberg y Lee~\cite{lundberg2017} propusieron SHAP (SHapley Additive exPlanations), un marco unificado para la interpretación de predicciones individuales basado en valores de Shapley de lateoría de juegos. SHAP asigna a cada feature un valor de importancia para una predicción específica, con la propiedad de que la suma de todos los valores SHAP reproduce exactamente la predicción del modelo. A diferencia de métodos anteriores como LIME, SHAP presenta consistencia teórica garantizada y permite tanto explicaciones locales (por predicción) como globales (sobre todo el dataset). En el presente trabajo se aplica \texttt{TreeExplainer}, la variante optimizada de SHAP para modelos basados en árboles, sobre una muestra de 2{,}000 registros del conjunto de prueba. Los resultados revelan que el año y el kilometraje dominan las predicciones de precio, confirmando las correlaciones identificadas en el análisis exploratorio y validando la coherencia del modelo con el conocimiento del dominio.
+La explicabilidad de los modelos de aprendizaje automático en aplicaciones de alto impacto. Lundberg y Lee~\cite{lundberg2017} propusieron SHAP (SHapley Additive exPlanations), un marco unificado para la interpretación de predicciones individuales basado en valores de Shapley de la teoría de juegos. SHAP asigna a cada feature un valor de importancia para una predicción específica, con la propiedad de que la suma de todos los valores SHAP reproduce exactamente la predicción del modelo. A diferencia de métodos anteriores como LIME, SHAP presenta consistencia teórica garantizada y permite tanto explicaciones locales (por predicción) como globales (sobre todo el dataset). En el presente trabajo se aplica \texttt{TreeExplainer}, la variante optimizada de SHAP para modelos basados en árboles, sobre una muestra de 2{,}000 registros del conjunto de prueba. Los resultados revelan que el año y el kilometraje dominan las predicciones de precio, confirmando las correlaciones identificadas en el análisis exploratorio y validando la coherencia del modelo con el conocimiento del dominio.
 
-% Agentes LLM con tool calling 
+% AGENTEEEE CAMBIAR 
 La integración de modelos predictivos en agentes inteligentes representa una tendencia emergente en la literatura. Trabajos recientes han demostrado que los LLMs pueden actuar como orquestadores de herramientas externas mediante \textit{toolcalling}, descomponiendo tareas complejas en subtareas manejables y seleccionando las herramientas apropiadas para cada una \cite{schick2023}. En el contexto de sistemas de recomendación, esta capacidad permite que el agente no solo recupere información sino que la interprete y la comunique al usuario en lenguaje natural. A diferencia de los sistemas  de recomendación tradicionales basados en filtrado colaborativo \cite{aggarwal2016}, el enfoque propuesto en este trabajo emplea el modelo de predicción de precios como herramienta del agente, permitiendo recomendaciones justificadas con explicaciones SHAP que detallan los factores determinantes del precio estimado para cada vehículo.
 
 
@@ -146,7 +140,7 @@ Para el presente proyecto se adoptó una estrategia de partición temporal basad
 \subsection{Modelos y Protocolo de Evaluación}
 \label{subsec:modelos}
 
-Se evaluaron seis modelos de aprendizaje automático bajo un protocolo unificado de validación cruzada temporal. Para garantizar que las diferencias en rendimiento sean atribuibles exclusivamente al modelo y no al preprocesamiento, todos los modelos reciben el mismo \texttt{ColumnTransformer} definido en la subsección anterior como primera etapa de un \texttt{Pipeline} de scikit-learn.
+Se evaluaron seis modelos de aprendizaje automático bajo un protocolo unificado de validación cruzada temporal. Para garantizar que las diferencias en rendimiento sean exclusivamente al modelo y no al preprocesamiento, todos los modelos reciben el mismo \texttt{ColumnTransformer} definido en la subsección anterior como primera etapa de un \texttt{Pipeline} de scikit-learn.
 
 El protocolo de evaluación consiste en un esquema de validación \texttt{TimeSeriesSplit} con $k=5$ folds sobre el conjunto de entrenamiento, respetando el orden cronológico en cada partición. Se calculan tres métricas por modelo: MAE, RMSE y $R^2$. Además, se reporta el Gap en $R^2$, definido como la diferencia entre el $R^2$ sobre el conjunto de entrenamiento y el $R^2$ sobre el conjunto de validación:
 
@@ -155,7 +149,7 @@ El protocolo de evaluación consiste en un esquema de validación \texttt{TimeSe
     \label{eq:gap}
 \end{equation}
 
-Un Gap-$R^2$ elevado indica que el modelo memoriza los datos de entrenamiento en lugar de aprender patrones generalizables, condición conocida como \textit{overfitting}. Se establece como umbral de alerta un Gap-$R^2$ superior a 0.10.
+Un Gap $R^2$ elevado indica que el modelo memoriza los datos de entrenamiento en lugar de aprender patrones generalizables, conocido como \textit{overfitting}. Se establece como umbral de alerta un Gap $R^2$ superior a 0.10.
 
 Los seis modelos evaluados y sus configuraciones iniciales son los siguientes:
 
@@ -163,7 +157,7 @@ Los seis modelos evaluados y sus configuraciones iniciales son los siguientes:
 
 \textbf{Ridge Regression (Baseline 2):} Extensión regularizada de la regresión lineal con penalización L2 ($\alpha{=}1.0$). Mitiga los coeficientes extremos generados por categorías poco frecuentes como marcas de lujo con pocos registros en el dataset.
 
-\textbf{Decision Tree:} Árbol de decisión con profundidad máxima de cinco niveles y un mínimo de 50 muestras por hoja (\texttt{max\_depth=5}, \texttt{min\_samples\_leaf=50}). Se incluye por su valor interpretativo: permite visualizar directamente la lógica de decisión del modelo en los primeros tres niveles.
+\textbf{Decision Tree:} Árbol de decisión con profundidad máxima de cinco niveles y un mínimo de 50 muestras por hoja (\texttt{max\_depth=5}, \texttt{min\_samples\_leaf=50}). Se incluye por su valor interpretativo, ya que permite visualizar directamente la lógica de decisión del modelo en los primeros tres niveles.
 
 \textbf{Random Forest:} Ensemble de 100 árboles de decisión entrenados sobre muestras aleatorias del dataset mediante bagging (\texttt{n\_estimators=100}, \texttt{min\_samples\_leaf=5}). Captura relaciones no lineales sin transformaciones manuales, por ejemplo la depreciación exponencial observada en el EDA entre año de fabricación y precio.
 
@@ -192,9 +186,9 @@ El espacio de búsqueda definido fue el siguiente:
 
 La primera búsqueda (\textit{Tuning v1}) encontró parámetros agresivos: \texttt{learning\_rate=0.181}, \texttt{num\_leaves=118} y \texttt{min\_child\_samples=28}. Esta combinación redujo el MAE de \$3{,}987 a \$3{,}588, pero aumentó el Gap R² de 0.058 a 0.102, indicando mayor overfitting que el modelo sin afinar. El \texttt{learning\_rate} elevado genera correcciones grandes en cada ronda de boosting, lo que favorece la memorización de patrones específicos del conjunto de entrenamiento.
 
-Ante este resultado, se realizó una segunda búsqueda (\textit{Tuning v2}) con rangos más conservadores: \texttt{learning\_rate} limitado a $[0.01, 0.08]$, \texttt{num\_leaves} a $[20, 80]$ y \texttt{min\_child\_samples} elevado a $[50, 300]$. Para compensar el menor ritmo de aprendizaje, el rango de \texttt{n\_estimators} se amplió a $[400, 900]$. Los mejores parámetros encontrados fueron: \texttt{learning\_rate=0.073}, \texttt{num\_leaves=67}, \texttt{min\_child\_samples=63}, \texttt{n\_estimators=750}, \texttt{subsample=0.714} y \texttt{colsample\_bytree=0.929}.
+Debido a este resultado, se realizó una segunda búsqueda (\textit{Tuning v2}) con rangos más conservadores: \texttt{learning\_rate} limitado a $[0.01, 0.08]$, \texttt{num\_leaves} a $[20, 80]$ y \texttt{min\_child\_samples} elevado a $[50, 300]$. Para compensar el menor ritmo de aprendizaje, el rango de \texttt{n\_estimators} se amplió a $[400, 900]$. Los mejores parámetros encontrados fueron: \texttt{learning\_rate=0.073}, \texttt{num\_leaves=67}, \texttt{min\_child\_samples=63}, \texttt{n\_estimators=750}, \texttt{subsample=0.714} y \texttt{colsample\_bytree=0.929}.
 
-El modelo resultante (\textit{Tuning v2}) obtuvo un MAE de \$3{,}660 sobre el conjunto de validación, con un Gap R² de 0.074 — reducción del 27.6\% respecto al gap de \textit{Tuning v1}. Los resultados comparativos de las tres versiones de LightGBM se presentan en la Tabla~\ref{tab:hypertuning}. Se selecciona \textit{Tuning v2} como modelo final por representar el mejor balance entre precisión (\$327 de mejora en MAE respecto al modelo sin afinar) y capacidad de generalización (Gap R² de 0.074 frente a 0.102 de \textit{Tuning v1}).
+El modelo resultante (\textit{Tuning v2}) obtuvo un MAE de \$3{,}660 sobre el conjunto de validación, con un Gap R² de 0.074, reducción del 27.6\% respecto al gap de \textit{Tuning v1}. Los resultados comparativos de las tres versiones de LightGBM se presentan en la Tabla~\ref{tab:hypertuning}. Se selecciona \textit{Tuning v2} como modelo final por representar el mejor balance entre precisión (\$327 de mejora en MAE respecto al modelo sin afinar) y capacidad de generalización (Gap R² de 0.074 frente a 0.102 de \textit{Tuning v1}).
 
 %----------------------------------------------------
 \subsection{Explicabilidad con SHAP}
@@ -259,7 +253,7 @@ Se evaluaron seis modelos mediante validación cruzada temporal (\texttt{TimeSer
 
 Los modelos basados en árboles de decisión no lineales (Random Forest, LightGBM y XGBoost) superan consistentemente a los modelos lineales (Regresión Lineal y Ridge) en todas las métricas, con reducciones en MAE de entre \$1{,}551 y \$2{,}068 respecto al mejor baseline. Este resultado confirma que las relaciones entre las variables del mercado de vehículos usados no son capturables mediante transformaciones lineales, tal como sugería la tendencia exponencial observada en el diagrama de dispersión precio-año del EDA.
 
-Random Forest obtiene el menor MAE (\$3{,}798) pero presenta el mayor Gap R² (0.124), lo que indica overfitting moderado: su R² en entrenamiento es de 0.921 frente a 0.797 en validación. LightGBM alcanza el R² más alto (0.798) con un Gap R² de 0.058, lo que representa la mitad del overfitting de Random Forest, con una diferencia de MAE de solo \$189 (4.7\%). XGBoost exhibe el menor Gap R² de todos los modelos no lineales (0.044), pero su MAE es \$370 superior al de LightGBM y su R² es 0.012 inferior. Por las razones expuestas en la Subsección~\ref{subsec:hypertuning}, LightGBM es seleccionado como modelo principal para la optimización de hiperparámetros.
+Random Forest obtiene el menor MAE (\$3{,}798) pero presenta el mayor Gap R² (0.124), lo que indica overfitting moderado, su R² en entrenamiento es de 0.921 frente a 0.797 en validación. LightGBM alcanza el R² más alto (0.798) con un Gap R² de 0.058, lo que representa la mitad del overfitting de Random Forest, con una diferencia de MAE de solo \$189 (4.7\%). XGBoost exhibe el menor Gap R² de todos los modelos no lineales (0.044), pero su MAE es \$370 superior al de LightGBM y su R² es 0.012 inferior. Por las razones expuestas en la Subsección~\ref{subsec:hypertuning}, LightGBM es seleccionado como modelo principal para la optimización de hiperparámetros.
 
 \begin{figure}[H]
     \centering
@@ -322,7 +316,7 @@ El modelo \textit{LightGBM Tuning v2} fue evaluado sobre el conjunto de prueba d
     \end{tabular}
 \end{table}
 
-El MAE en test (\$3{,}999) representa una mejora del 27.4\% respecto al mejor baseline (Regresión Lineal, \$5{,}510). La diferencia entre validación y test es de \$339 en MAE (9.3\%), lo que confirma que el modelo generaliza adecuadamente a datos no vistos bajo el esquema de partición temporal adoptado. La caída de R² de 0.792 a 0.762 es consistente con el desplazamiento temporal entre los conjuntos: los anuncios de mayo de 2021 presentan una distribución de precios levemente diferente a la de abril, efecto esperable en datos de mercado con variación temporal.
+El MAE en test (\$3{,}999) representa una mejora del 27.4\% respecto al mejor baseline (Regresión Lineal, \$5{,}510). La diferencia entre validación y test es de \$339 en MAE (9.3\%), lo que confirma que el modelo generaliza adecuadamente a datos no vistos bajo el esquema de partición temporal adoptado. La caída de R² de 0.792 a 0.762 es consistente con el desplazamiento temporal entre los conjuntos, los anuncios de mayo de 2021 presentan una distribución de precios levemente diferente a la de abril, efecto esperable en datos de mercado con variación temporal.
 
 La distribución de errores muestra una media de \$24, lo que indica que el modelo no presenta sesgo sistemático de sobreestimación ni subestimación. La curva de errores acumulados revela que el 80\% de las predicciones tienen un error absoluto menor a \$6{,}000.
 
@@ -439,7 +433,7 @@ El análisis SHAP sobre el modelo final \textit{LightGBM Tuning v2} permite vali
 
 \textbf{Hallazgo 1: Dominio de variables mecánicas básicas.} 
 
-El año de fabricación (\texttt{year}) y el kilometraje (\texttt{odometer}) lideran el ranking con importancias SHAP de \$6{,}054 y \$3{,}188 respectivamente, confirmando las correlaciones identificadas en el EDA ($r{=}0.58$ y $r{=}{-}0.54$). El \textit{summary plot} (Fig.~\ref{fig:shap_summary}) muestra que vehículos con año de fabricación reciente; representados en rojo; acumulan valores SHAP positivos de hasta \$20{,}000, mientras que vehículos con años antiguos — representados en azul — presentan valores negativos de hasta $-$\$15{,}000. El odómetro exhibe el patrón inverso: mayor kilometraje reduce el precio predicho, consistente con la depreciación por uso documentada en el mercado automotriz \cite{aggarwal2016}.
+El año de fabricación (\texttt{year}) y el kilometraje (\texttt{odometer}) lideran el ranking con importancias SHAP de \$6{,}054 y \$3{,}188 respectivamente, confirmando las correlaciones identificadas en el EDA ($r{=}0.58$ y $r{=}{-}0.54$). El \textit{summary plot} (Fig.~\ref{fig:shap_summary}) muestra que vehículos con año de fabricación reciente; representados en rojo; acumulan valores SHAP positivos de hasta \$20{,}000, mientras que vehículos con años antiguos; representados en azul; presentan valores negativos de hasta $-$\$15{,}000. El odómetro exhibe el patrón inverso, mayor kilometraje reduce el precio predicho, consistente con la depreciación por uso documentada en el mercado automotriz \cite{aggarwal2016}.
 
 \textbf{Hallazgo 2: Importancia del número de cilindros.} 
 
@@ -447,17 +441,15 @@ La variable \texttt{cylinders} ocupa la tercera posición con una importancia SH
 
 \textbf{Hallazgo 3: Comportamiento de variables de combustible y tracción.} 
 
-La variable \texttt{fuel\_gas} (combustible gasolina) presenta valores SHAP negativos para la mayoría de los registros, lo que indica que ser de gasolina baja el precio predicho relativo al promedio. Este resultado es contraintuitivo en un primer análisis pero tiene una explicación estructural: los vehículos de combustible alternativo (diesel, híbrido, eléctrico) tienen precios promedio más altos en el dataset dado que son modelos más recientes o de gama superior. De forma análoga, la tracción delantera (\texttt{drive\_fwd}) contribuye negativamente al precio, en contraste con la tracción integral (4WD) y trasera (RWD) que se asocian a vehículos de mayor valor.
+La variable \texttt{fuel\_gas} (combustible gasolina) presenta valores SHAP negativos para la mayoría de los registros, lo que indica que ser de gasolina baja el precio predicho relativo al promedio. Este resultado es contraintuitivo en un primer análisis pero tiene una explicación estructural. Los vehículos de combustible alternativo (diesel, híbrido, eléctrico) tienen precios promedio más altos en el dataset dado que son modelos más recientes o de gama superior. De forma análoga, la tracción delantera (\texttt{drive\_fwd}) contribuye negativamente al precio, en contraste con la tracción integral (4WD) y trasera (RWD) que se asocian a vehículos de mayor valor.
 
 \textbf{Hallazgo 4: Ausencia de patrones espurios.}
 
-El ranking de importancia SHAP no presenta variables con alta influencia que carezcan de justificación económica. Si el modelo hubiera aprendido patrones spurios derivados de data leakage o de correlaciones espúreas en el dataset, variables como \texttt{region}, \texttt{state} o \texttt{posting\_date}; excluidas
-explícitamente del pipeline; habrían aparecido en posiciones
-superiores. La coherencia del ranking con el conocimiento del dominio valida que el protocolo de prevención de data leakage descrito en la Subsección~\ref{subsec:particion} fue efectivo.
+El ranking de importancia SHAP no presenta variables con alta influencia que carezcan de justificación económica. Si el modelo hubiera aprendido patrones falsos derivados de data leakage o de correlaciones falsas en el dataset, variables como \texttt{region}, \texttt{state} o \texttt{posting\_date}; excluidas explícitamente del pipeline; habrían aparecido en posiciones superiores. La coherencia del ranking con el conocimiento del dominio valida que el protocolo de prevención de data leakage descrito en la Subsección~\ref{subsec:particion} fue efectivo.
 
 \textbf{Análisis individual: waterfall plot.}
 
-El \textit{waterfall plot} (Fig.~\ref{fig:shap_waterfall}) ilustra la descomposición de la predicción para el vehículo con precio más cercano a la mediana del mercado (\$14{,}444). Partiendo del precio base de \$19{,}809, las características del vehículo ajustan la predicción hacia abajo en \$5{,}522 netos: la marca Chrysler resta \$3{,}287, la tracción delantera resta \$2{,}004 y el combustible gasolina resta \$1{,}317, mientras que el bajo kilometraje aporta +\$797 y el tipo de carrocería aporta +\$758. El precio predicho resultante (\$14{,}287) difiere del precio real en solo \$157, con todos los ajustes siendo económicamente justificables. Esta capacidad de descomposición individual constituye la base para las explicaciones generadas por el agente inteligente en la Etapa~3, donde cada recomendación puede acompañarse de un desglose detallado de los factores que determinan el precio estimado del vehículo.
+El \textit{waterfall plot} (Fig.~\ref{fig:shap_waterfall}) ilustra la descomposición de la predicción para el vehículo con precio más cercano a la mediana del mercado (\$14{,}444). Partiendo del precio base de \$19{,}809, las características del vehículo ajustan la predicción hacia abajo en \$5{,}522 netos, eso quiere decir que la marca Chrysler resta \$3{,}287, la tracción delantera resta \$2{,}004 y el combustible gasolina resta \$1{,}317, mientras que el bajo kilometraje aporta +\$797 y el tipo de carrocería aporta +\$758. El precio predicho resultante (\$14{,}287) difiere del precio real en solo \$157, con todos los ajustes siendo económicamente justificables.
 
 %----------------------------------------------------
 \subsection{Limitaciones}
@@ -487,16 +479,7 @@ El \textit{waterfall plot} (Fig.~\ref{fig:shap_waterfall}) ilustra la descomposi
 % Párrafo 4: trabajo futuro
 
 
-% ══════════════════════════════════════════════════════════════
 % REFERENCIAS
-% ══════════════════════════════════════════════════════════════
-% QUÉ INCLUIR:
-% - Las referencias del documento técnico de Etapa 1
-% - Papers adicionales que citen en el texto
-% - Formato IEEE: [1], [2], etc. en el texto
-%
-% MÍNIMO RECOMENDADO: 8-10 referencias
-% ── ── ── ── ── ── ── ── ── ── ── ── ── ── ── ── ── ── ── ──
 \begin{thebibliography}{99}
 
 \bibitem{aggarwal2016}
