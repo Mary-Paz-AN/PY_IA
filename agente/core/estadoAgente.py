@@ -1,5 +1,6 @@
 # Define el estado compartido entre todos los nodos del agente.
 # pip install langgraph 
+
 from typing import TypedDict, Optional, List, Annotated
 from langgraph.graph.message import add_messages
 
@@ -35,16 +36,16 @@ dict con todos los campos del EstadoAgente inicializados
 """
 def estado_inicial(consulta: str) -> dict:
     return {
-        "messages"         : [],
+        "messages" : [],
         "consulta_usuario" : consulta,
-        "proposito"        : None,
-        "parametros"       : None,
+        "proposito" : None,
+        "parametros" : None,
         "tool_seleccionada": None,
-        "resultado_tool"   : None,
-        "validacion_ok"    : None,
-        "mensaje_error"    : None,
-        "respuesta"  : None,
-        "reintentos"   : 0
+        "resultado_tool" : None,
+        "validacion_ok" : None,
+        "mensaje_error" : None,
+        "respuesta" : None,
+        "reintentos" : 0
     }
 
 

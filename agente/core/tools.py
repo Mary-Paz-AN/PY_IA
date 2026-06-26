@@ -12,8 +12,8 @@ import shap
 import os
 
 # Carga de recursos (se ejecuta una sola vez al importar el módulo)
-RUTA_MODELO  = os.path.join(os.path.dirname(__file__), '..', 'modelo', 'lgbm_tuning_v2.pkl')
-RUTA_DATASET = os.path.join(os.path.dirname(__file__), '..', 'Dataset', 'vehicles.csv')
+RUTA_MODELO = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../modelo/lgbm_tuning_v2.pkl'))
+RUTA_DATASET = os.path.abspath(os.path.join(os.path.dirname(__file__), '../../Dataset/vehicles.csv'))
 
 print("Cargando modelo y dataset...")
 
@@ -32,9 +32,9 @@ df_vehiculos = df_vehiculos[
 
 # Preparar el explainer de SHAP (solo 1 vez)
 preprocesador_global = modelo_pipeline.named_steps['preprocessor']
-modelo_lgbm_global    = modelo_pipeline.named_steps['regressor']
-explainer_global      = shap.TreeExplainer(modelo_lgbm_global)
-feature_names_global  = preprocesador_global.get_feature_names_out()
+modelo_lgbm_global = modelo_pipeline.named_steps['regressor']
+explainer_global = shap.TreeExplainer(modelo_lgbm_global)
+feature_names_global = preprocesador_global.get_feature_names_out()
 
 print(f"Modelo cargado. Dataset con {len(df_vehiculos):,} registros disponibles.")
 
@@ -42,19 +42,11 @@ print(f"Modelo cargado. Dataset con {len(df_vehiculos):,} registros disponibles.
 # Filtro de precios incosistentes
 print("Evaluando consistencia de precios en todo el dataset (puede tardar unos segundos)...")
 
-predicciones_todas = modelo_pipeline.predict(
-    df_vehiculos.drop(columns=['price'], errors='ignore')
-)
-
-error_relativo_todas = np.abs(
-    df_vehiculos['price'].values - predicciones_todas
-) / df_vehiculos['price'].values
+predicciones_todas = modelo_pipeline.predict(df_vehiculos.drop(columns=['price'], errors='ignore'))
+error_relativo_todas = np.abs(df_vehiculos['price'].values - predicciones_todas) / df_vehiculos['price'].values
 
 UMBRAL_INCONSISTENCIA = 5.0  # 500% de error relativo
-
-indices_inconsistentes = set(
-    df_vehiculos.index[error_relativo_todas > UMBRAL_INCONSISTENCIA]
-)
+indices_inconsistentes = set(df_vehiculos.index[error_relativo_todas > UMBRAL_INCONSISTENCIA])
 
 print(f"{len(indices_inconsistentes):,} anuncios marcados como inconsistentes ")
 print(f"({len(indices_inconsistentes)/len(df_vehiculos)*100:.2f}% del dataset)")
@@ -99,20 +91,20 @@ def estimar_precio(
 
     # Construccion del DataFrame que espera el pipeline (deben coincidir exactamente con las columnas usadas durante el entrenamiento)
     entrada = pd.DataFrame([{
-        'region'       : region,
-        'year'         : year,
+        'region' : region,
+        'year' : year,
         'manufacturer' : manufacturer,
-        'model'        : model,
-        'condition'    : condition,
-        'cylinders'    : cylinders,
-        'fuel'         : fuel,
-        'odometer'     : odometer,
+        'model' : model,
+        'condition' : condition,
+        'cylinders' : cylinders,
+        'fuel' : fuel,
+        'odometer' : odometer,
         'title_status' : title_status,
         'transmission' : transmission,
-        'drive'        : drive,
-        'type'         : type,
+        'drive' : drive,
+        'type' : type,
         'paint_color'  : paint_color,
-        'state'        : state,
+        'state' : state,
         'posting_date' : pd.Timestamp.now().isoformat()
     }])
 
@@ -228,14 +220,14 @@ def buscar_vehiculos(
     for _, fila in top_resultados.iterrows():
         vehiculos.append({
             'manufacturer' : fila['manufacturer'],
-            'model'        : fila['model'],
-            'year'         : int(fila['year']) if pd.notna(fila['year']) else None,
-            'price'        : float(fila['price']),
-            'odometer'     : float(fila['odometer']) if pd.notna(fila['odometer']) else None,
-            'condition'    : fila['condition'],
-            'fuel'         : fila['fuel'],
+            'model' : fila['model'],
+            'year' : int(fila['year']) if pd.notna(fila['year']) else None,
+            'price' : float(fila['price']),
+            'odometer' : float(fila['odometer']) if pd.notna(fila['odometer']) else None,
+            'condition' : fila['condition'],
+            'fuel' : fila['fuel'],
             'transmission' : fila['transmission'],
-            'type'         : fila['type']
+            'type' : fila['type']
         })
 
     return {
@@ -286,20 +278,20 @@ def explicar_prediccion(
     top_n: int = 5 ) -> dict:
 
     entrada = pd.DataFrame([{
-        'region'       : region,
-        'year'         : year,
+        'region' : region,
+        'year' : year,
         'manufacturer' : manufacturer,
-        'model'        : model,
-        'condition'    : condition,
-        'cylinders'    : cylinders,
-        'fuel'         : fuel,
-        'odometer'     : odometer,
+        'model' : model,
+        'condition' : condition,
+        'cylinders' : cylinders,
+        'fuel' : fuel,
+        'odometer' : odometer,
         'title_status' : title_status,
         'transmission' : transmission,
-        'drive'        : drive,
-        'type'         : type,
+        'drive' : drive,
+        'type' : type,
         'paint_color'  : paint_color,
-        'state'        : state,
+        'state' : state,
         'posting_date' : pd.Timestamp.now().isoformat()
     }])
 

@@ -1,0 +1,7 @@
+id_sesion,turno,timestamp,consulta,task,validacion_ok,reintentos,tiempo_s,hubo_error
+20260626_104534,1,2026-06-26T10:47:46,"busco un SUV automático por menos de $15,000",buscar_vehiculos,True,0,128.391,True
+20260626_104534,2,2026-06-26T10:50:07,"cuánto vale un Toyota Camry 2019 con 50,000 millas en buena condición",estimar_precio,True,0,126.507,True
+20260626_104534,3,2026-06-26T10:52:47,por qué ese carro vale eso,explicar_prediccion,True,0,131.988,False
+20260626_104534,4,2026-06-26T11:06:15,"tengo $12,000 y quiero un Toyota económico con menos de 80,000 km",buscar_vehiculos,True,0,785.569,False
+20260626_104534,5,2026-06-26T11:09:46,"busco un Ferrari eléctrico por menos de $5,000",buscar_vehiculos,False,2,147.926,True
+20260626_104534,6,2026-06-26T11:12:09,vendo un Ford F-150 2019 en excelente condicion con 35000 millas,estimar_precio,True,0,77.639,False

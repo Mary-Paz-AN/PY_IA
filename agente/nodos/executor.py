@@ -1,8 +1,8 @@
 # Recibe la tool que el Planner selecciona y los parámetros que fueron extraidos por el Parser Input
 # Ejecuta la función y guarda el resultado en el estado
 
-from estadoAgente import EstadoAgente
-from tools import (
+from core.estadoAgente import EstadoAgente
+from core.tools import (
     estimar_precio,
     buscar_vehiculos,
     explicar_prediccion
@@ -10,32 +10,32 @@ from tools import (
 
 # Valores default para la busqueda y estimación de precio
 DEFAULTS_BUSCAR = {
-    "precio_max"    : None,
-    "precio_min"    : None,
-    "manufacturer"  : None,
-    "type"          : None,
-    "fuel"          : None,
-    "transmission"  : None,
+    "precio_max" : None,
+    "precio_min" : None,
+    "manufacturer" : None,
+    "type" : None,
+    "fuel" : None,
+    "transmission" : None,
     "condition_min" : "good",
-    "year_min"      : None,
+    "year_min" : None,
     "max_resultados": 5
 }
 
 DEFAULTS_ESTIMAR = {
-    "year"         : 2013,   # mediana del dataset
+    "year" : 2013, # mediana del dataset
     "manufacturer" : "ford", # marca más frecuente
-    "model"        : "unknown",
-    "condition"    : "good",       # moda de 31%
-    "cylinders"    : "6 cylinders",
-    "fuel"         : "gas",        # 84% del dataset
-    "odometer"     : 85_548,       # mediana
-    "title_status" : "clean",      # 94.87% del dataset
-    "transmission" : "automatic",  # 77.72% del dataset
-    "drive"        : "4wd",        # moda de 30.58%
-    "type"         : "sedan",      # moda de 20.32%
+    "model" : "unknown",
+    "condition" : "good", # moda de 31%
+    "cylinders" : "6 cylinders",
+    "fuel" : "gas", # 84% del dataset
+    "odometer" : 85_548, # mediana
+    "title_status" : "clean", # 94.87% del dataset
+    "transmission" : "automatic", # 77.72% del dataset
+    "drive" : "4wd", # moda de 30.58%
+    "type" : "sedan", # moda de 20.32%
     "paint_color"  : "white",
-    "region"       : "unknown",
-    "state"        : "ca"
+    "region" : "unknown",
+    "state" : "ca"
 }
 
 
