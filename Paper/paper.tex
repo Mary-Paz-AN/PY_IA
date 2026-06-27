@@ -38,48 +38,26 @@ Machine Learning e Integrado en un Agente Inteligente}
 \begin{document}
 \maketitle
 
-% ══════════════════════════════════════════════════════════════
 % ABSTRACT
-% ══════════════════════════════════════════════════════════════
-% QUÉ ESCRIBIR:
-% 4-6 oraciones que resuman TODO el paper:
-%   1. El problema que resolvieron
-%   2. El método que usaron
-%   3. El resultado principal en números
-%   4. Cómo se integró en el agente
-% NO usar referencias ni abreviaciones sin definir.
-%----------------------------------------------------
 \begin{abstract}
-% TODO: Escribir el abstract aquí.
-% Ejemplo de estructura:
-% "La compra de vehículos usados representa una decisión financiera
-% significativa para muchos consumidores. Este trabajo presenta un
-% sistema de recomendación basado en LightGBM entrenado sobre
-% [N] registros de Craigslist para estimar el valor de mercado de
-% vehículos usados. El modelo final obtuvo un MAE de \$4{,}000 y
-% un R² de 0.762 sobre el conjunto de prueba, superando el baseline
-% en un 27.4\%. El modelo fue integrado en un agente inteligente
-% con capacidad de tool calling que recibe consultas en lenguaje
-% natural y retorna recomendaciones justificadas con explicaciones
-% SHAP."
+La compra de vehículos usados representa una decisión financiera significativa para los consumidores, especialmente en contextos donde el acceso a vehículos nuevos está limitado por su costo. Sin embargo, el mercado carece de herramientas accesibles que permitan evaluar objetivamente la relación calidad-precio de un vehículo. Este trabajo presenta un sistema de recomendación basado en LightGBM, entrenado sobre 364{,}546 registros reales de Craigslist, que estima el valor de mercado de vehículos usados a partir de sus características. El modelo final obtuvo un MAE de \$3{,}999 y un R² de 0.762 sobre el conjunto de prueba, superando el baseline de regresión lineal en un 27.4\%. El modelo fue integrado en un agente inteligente construido con LangGraph, con arquitectura Planner-Executor-Verifier, que recibe consultas en lenguaje natural mediante el modelo Qwen3 ejecutado localmente, invoca el modelo como herramienta y retorna recomendaciones justificadas mediante explicaciones SHAP. La validación del agente sobre 21 turnos de conversación estructurada alcanzó una tasa de éxito global del 81\%, con 100\% en las tareas de estimación de precio y explicación de predicciones.
 \end{abstract}
 
-%----------------------------------------------------
+% KEYWORDS
 \begin{IEEEkeywords}
-Machine Learning, LightGBM, Sistema de Recomendación, SHAP, Agente Inteligente, Vehículos Usados, Gradient Boosting
+Machine Learning, LightGBM, Sistema de Recomendación, SHAP, Agente Inteligente, Vehículos Usados, Gradient Boosting, Planner, Executor, Verifier, LangGraph
 \end{IEEEkeywords}
 
-%----------------------------------------------------
+% INTRODUCCIÓN
 \section{Introducción}
 
-La adquisición de vehículos usados es parte de una de las decisioness financieras más significativas para los consumidores, especialmente en situaciones donde el acceso a vehículos nuevos es limitado por su costo. En mercados como el estadounidense, plataformas de clasificados en línea como Craigslist concentran númerosos anuncios de venta con distintas características, lo que hace dificil que un comprador pueda evaluar desde un punto de vista objetivo si un vehículo representa una oferta razonable dentro de su presupuesto.
+La adquisición de vehículos usados es parte de una de las decisiones financieras más significativas para los consumidores, especialmente en situaciones donde el acceso a vehículos nuevos es limitado por su costo. En mercados como el estadounidense, plataformas de clasificados en línea como Craigslist concentran numerosos anuncios de venta con distintas características, lo que hace difícil que un comprador pueda evaluar desde un punto de vista objetivo si un vehículo representa una oferta razonable dentro de su presupuesto.
 
-El precio de un vehículo usado no puede calcularse de una manera sencilla, debio a que depende de la interacción no lineal de múltiples  factores: el año de fabricación, el kilometraje acumulado, la marca, el tipo de carrocería, el estado mecánico y las condiciones del mercado regional, entre otros. Esto hace que los enfoques basados en heurísticas o modelos lineales no sean suficientes para capturar la variabilidad real del mercado, ya que depende de varios factores.
+El precio de un vehículo usado no puede calcularse de una manera sencilla, debido a que depende de la interacción no lineal de múltiples  factores: el año de fabricación, el kilometraje acumulado, la marca, el tipo de carrocería, el estado mecánico y las condiciones del mercado regional, entre otros. Esto hace que los enfoques basados en heurísticas o modelos lineales no sean suficientes para capturar la variabilidad real del mercado, ya que depende de varios factores.
 
-Ante esta problemática, se propone un sistema de recomendación de vehículos usados basado en técnicas de aprendizaje automático, diseñado para asistir a los compradores en la identificación de vehículos con una relación calidad-precio favorable. El sistema fue desarrollado a partir de un conjunto de datos de 426,880 registros reales provenientes de Craigslist \cite{sulianta2024}, el cual fue sometido a un proceso exhaustivo de limpieza y preprocesamiento que redujo el conjunto de datos a 364,546 registros utilizables. Sobre este conjunto se evaluaron seis modelos de aprendizaje automático, incluyendo Regresión Lineal, Ridge Regresion, Decision Tree, Random Forest, XGBoost y LightGBM, mediante un protocolo de validación temporal estricto. Como resultado, LightGBM \cite{ke2017} fue seleccionado como modelo principal al demostrar el mejor equilibrio entre precisión predictiva y capacidad de generalización. Posteriormente, el modelo fue optimizado mediante búsqueda aleatoria de hiperparámetros y evaluado sobre un conjunto de prueba independiente, obteniendo un error absoluto medio de \$4,000 y un coeficiente de determinación ($R^2$) de 0.762. Estos resultados representan una mejora del 27.4\% con respecto al modelo de referencia.
+Ante esta problemática, se propone un sistema de recomendación de vehículos usados basado en técnicas de aprendizaje automático, diseñado para asistir a los compradores en la identificación de vehículos con una relación calidad-precio favorable. El sistema fue desarrollado a partir de un conjunto de datos de 426,880 registros reales provenientes de Craigslist \cite{sulianta2024}, el cual fue sometido a un proceso exhaustivo de limpieza y preprocesamiento que redujo el conjunto de datos a 364,546 registros utilizables. Sobre este conjunto se evaluaron seis modelos de aprendizaje automático, incluyendo Regresión Lineal, Ridge Regression, Decision Tree, Random Forest, XGBoost y LightGBM, mediante un protocolo de validación temporal estricto. Como resultado, LightGBM \cite{ke2017} fue seleccionado como modelo principal al demostrar el mejor equilibrio entre precisión predictiva y capacidad de generalización. Posteriormente, el modelo fue optimizado mediante búsqueda aleatoria de hiperparámetros y evaluado sobre un conjunto de prueba independiente, obteniendo un error absoluto medio de \$4,000 y un coeficiente de determinación (R²) de 0.762. Estos resultados representan una mejora del 27.4\% con respecto al modelo de referencia.
 
-%ESTO ES SOLO PARA EL AGENTE, SE VA A LLEGAR A CORREGIR SI NO SE LOGRA LO QUE SE PIENSA CON EL AGENTE
-Como componente transversal del sistema, el modelo fue integrado en un agente inteligente con capacidad de \textit{tool calling}, capaz de recibir consultas en lenguaje natural, invocar el modelo de predicción como herramienta y retornar recomendaciones justificadas mediante explicaciones generadas con SHAP \cite{lundberg2017}. Esta integración permite que el sistema no solo prediga precios, sino que explique al usuario los factores que determinan el valor estimado de cada vehículo.
+Como componente transversal del sistema, el modelo fue integrado en un agente inteligente construido con LangGraph siguiendo una arquitectura Planner-Executor-Verifier. El \textit{Planner} utiliza el modelo de lenguaje Qwen3 ejecutado localmente mediante Ollama para interpretar consultas en lenguaje natural y extraer parámetros estructurados. El \textit{Executor} invoca el modelo predictivo como herramienta y el \textit{Verifier} valida la coherencia del resultado antes de retornar una respuesta justificada con explicaciones SHAP \cite{lundberg2017}. Esta integración permite que el sistema no solo prediga precios, sino que explique al usuario los factores que determinan el valor estimado de cada vehículo.
 
 Las contribuciones principales de este trabajo son las siguientes:
 
@@ -90,13 +68,12 @@ Las contribuciones principales de este trabajo son las siguientes:
 
 \item La aplicación de técnicas de explicabilidad basadas en SHAP para identificar los factores más influyentes en la estimación de precios.
 
-% ESTO TAMBIEN HAY QUE VERIFICARLO DESPUES DE DESARROLLAR EL AGENTE
-\item La integración del modelo predictivo en un agente inteligente con capacidad de \textit{tool calling}, permitiendo consultas en lenguaje natural y recomendaciones justificadas.
+\item La integración del modelo predictivo en un agente inteligente con arquitectura Planner-Executor-Verifier construido con LangGraph, que permite consultas en lenguaje natural, recomendaciones justificadas y explicaciones SHAP por predicción individual.
 \end{itemize}
 
-Dentro delarticulo se encuentran las siguientes secciones: la Sección~\ref{sec:related} presenta los trabajos relacionados; la Sección~\ref{sec:metodologia} describe la metodología empleada; la Sección~\ref{sec:resultados} reporta los experimentos y resultados obtenidos; la Sección~\ref{sec:discusion} discute los hallazgos principales y las limitaciones del sistema; y la Sección~\ref{sec:conclusiones} presenta las conclusiones y el trabajo futuro.
+Dentro del articulo se encuentran las siguientes secciones: la Sección~\ref{sec:related} presenta los trabajos relacionados; la Sección~\ref{sec:metodologia} describe la metodología empleada; la Sección~\ref{sec:resultados} reporta los experimentos y resultados obtenidos; la Sección~\ref{sec:discusion} discute los hallazgos principales y las limitaciones del sistema; y la Sección~\ref{sec:conclusiones} presenta las conclusiones y el trabajo futuro.
 
-%----------------------------------------------------
+% TRABAJOS RELACIONADOS
 \section{Trabajos Relacionados}
 \label{sec:related}
 
@@ -109,14 +86,12 @@ De igual manera, trabajos previos han comparado múltiples modelos de aprendizaj
 El algoritmo XGBoost, propuesto por Chen y Guestrin~\cite{chen2016}, introdujo un sistema escalable de gradient boosting basado en árboles  con optimizaciones de caché, compresión de datos y soporte para datos dispersos. Su uso en competencias de aprendizaje automático lo convirtió en el punto de referencia para datos tabulares. Después, Ke et al.~\cite{ke2017} propusieron LightGBM, que supero a XGBoost en eficiencia mediante dos innovaciones algorítmicas: \textit{Gradient-based One-Side Sampling} (GOSS), que reduce el tamaño del conjunto de entrenamiento dando prioridad a instancias con gradientes grandes, y \textit{Exclusive Feature Bundling} (EFB), que reduce el número de features agrupando variables mutuamente excluyentes. Los experimentos de los autores demuestran que LightGBM acelera el entrenamiento hasta 20 veces respecto a GBDT convencional manteniendo una precisión comparable. En el presente trabajo se confirma esta ventaja de velocidad: LightGBM completó la validación cruzada en 11 segundos frente a los 76 segundos de Random Forest sobre un dataset de 255{,}182 registros.
 
 % Explicabilidad con SHAP 
-La explicabilidad de los modelos de aprendizaje automático en aplicaciones de alto impacto. Lundberg y Lee~\cite{lundberg2017} propusieron SHAP (SHapley Additive exPlanations), un marco unificado para la interpretación de predicciones individuales basado en valores de Shapley de la teoría de juegos. SHAP asigna a cada feature un valor de importancia para una predicción específica, con la propiedad de que la suma de todos los valores SHAP reproduce exactamente la predicción del modelo. A diferencia de métodos anteriores como LIME, SHAP presenta consistencia teórica garantizada y permite tanto explicaciones locales (por predicción) como globales (sobre todo el dataset). En el presente trabajo se aplica \texttt{TreeExplainer}, la variante optimizada de SHAP para modelos basados en árboles, sobre una muestra de 2{,}000 registros del conjunto de prueba. Los resultados revelan que el año y el kilometraje dominan las predicciones de precio, confirmando las correlaciones identificadas en el análisis exploratorio y validando la coherencia del modelo con el conocimiento del dominio.
+La explicabilidad de los modelos de aprendizaje automático ha cobrado relevancia creciente en aplicaciones de alto impacto donde las decisiones deben ser auditables y comprensibles para los usuarios finales. Lundberg y Lee~\cite{lundberg2017} propusieron SHAP (SHapley Additive exPlanations), un marco unificado para la interpretación de predicciones individuales basado en valores de Shapley de la teoría de juegos. SHAP asigna a cada feature un valor de importancia para una predicción específica, con la propiedad de que la suma de todos los valores SHAP reproduce exactamente la predicción del modelo. A diferencia de métodos anteriores como LIME, SHAP presenta consistencia teórica garantizada y permite tanto explicaciones locales (por predicción) como globales (sobre todo el dataset). En el presente trabajo se aplica \texttt{TreeExplainer}, la variante optimizada de SHAP para modelos basados en árboles, sobre una muestra de 2{,}000 registros del conjunto de prueba. Los resultados revelan que el año y el kilometraje dominan las predicciones de precio, confirmando las correlaciones identificadas en el análisis exploratorio y validando la coherencia del modelo con el conocimiento del dominio.
 
-% AGENTEEEE CAMBIAR 
-La integración de modelos predictivos en agentes inteligentes representa una tendencia emergente en la literatura. Trabajos recientes han demostrado que los LLMs pueden actuar como orquestadores de herramientas externas mediante \textit{toolcalling}, descomponiendo tareas complejas en subtareas manejables y seleccionando las herramientas apropiadas para cada una \cite{schick2023}. En el contexto de sistemas de recomendación, esta capacidad permite que el agente no solo recupere información sino que la interprete y la comunique al usuario en lenguaje natural. A diferencia de los sistemas  de recomendación tradicionales basados en filtrado colaborativo \cite{aggarwal2016}, el enfoque propuesto en este trabajo emplea el modelo de predicción de precios como herramienta del agente, permitiendo recomendaciones justificadas con explicaciones SHAP que detallan los factores determinantes del precio estimado para cada vehículo.
-
+% Integración del agente
+La integración de modelos predictivos en agentes inteligentes representa una tendencia emergente en la literatura. Trabajos recientes han demostrado que los LLMs pueden actuar como orquestadores de herramientas externas mediante \textit{tool calling}, descomponiendo tareas complejas en subtareas manejables y seleccionando las herramientas apropiadas para cada una \cite{schick2023, masterman2024}. En particular, la arquitectura Planner-Executor ha demostrado robustez en escenarios de uso real \cite{dong2025}, mientras que la incorporación de un nodo Verifier agrega una capa de validación que mejora la confiabilidad del sistema ante entradas ambiguas o casos límite \cite{chu2024}. A diferencia de los sistemas de recomendación tradicionales basados en filtrado colaborativo \cite{aggarwal2016}, el enfoque propuesto emplea el modelo de predicción de precios como herramienta del agente, permitiendo recomendaciones justificadas con explicaciones SHAP que detallan los factores determinantes del precio estimado para cada vehículo.
 
 % METODOLOGÍA
-%----------------------------------------------------
 \section{Metodología}
 \label{sec:metodologia}
 
@@ -142,14 +117,14 @@ Para el presente proyecto se adoptó una estrategia de partición temporal basad
 
 Se evaluaron seis modelos de aprendizaje automático bajo un protocolo unificado de validación cruzada temporal. Para garantizar que las diferencias en rendimiento sean exclusivamente al modelo y no al preprocesamiento, todos los modelos reciben el mismo \texttt{ColumnTransformer} definido en la subsección anterior como primera etapa de un \texttt{Pipeline} de scikit-learn.
 
-El protocolo de evaluación consiste en un esquema de validación \texttt{TimeSeriesSplit} con $k=5$ folds sobre el conjunto de entrenamiento, respetando el orden cronológico en cada partición. Se calculan tres métricas por modelo: MAE, RMSE y $R^2$. Además, se reporta el Gap en $R^2$, definido como la diferencia entre el $R^2$ sobre el conjunto de entrenamiento y el $R^2$ sobre el conjunto de validación:
+El protocolo de evaluación consiste en un esquema de validación \texttt{TimeSeriesSplit} con $k=5$ folds sobre el conjunto de entrenamiento, respetando el orden cronológico en cada partición. Se calculan tres métricas por modelo: MAE, RMSE y R². Además, se reporta el Gap en R², definido como la diferencia entre el R² sobre el conjunto de entrenamiento y el R² sobre el conjunto de validación:
 
 \begin{equation}
     \text{Gap-}R^2 = R^2_{\text{train}} - R^2_{\text{val}}
     \label{eq:gap}
 \end{equation}
 
-Un Gap $R^2$ elevado indica que el modelo memoriza los datos de entrenamiento en lugar de aprender patrones generalizables, conocido como \textit{overfitting}. Se establece como umbral de alerta un Gap $R^2$ superior a 0.10.
+Un Gap R² elevado indica que el modelo memoriza los datos de entrenamiento en lugar de aprender patrones generalizables, conocido como \textit{overfitting}. Se establece como umbral de alerta un Gap R² superior a 0.10.
 
 Los seis modelos evaluados y sus configuraciones iniciales son los siguientes:
 
@@ -165,7 +140,7 @@ Los seis modelos evaluados y sus configuraciones iniciales son los siguientes:
 
 \textbf{LightGBM:} Algoritmo de gradient boosting que divide los árboles por hojas (\textit{leaf-wise}) en lugar de por niveles, logrando mayor velocidad y precisión en datasets grandes \cite{ke2017}. Se configura con 300 árboles, tasa de aprendizaje de 0.05 y 63 hojas por árbol (\texttt{num\_leaves=63}).
 
-Los resultados de la comparación se presentan en la Tabla~\ref{tab:modelos}. Random Forest obtiene el menor MAE (\$3{,}798), pero con un Gap $R^2$ de 0.124 que indica overfitting moderado. LightGBM alcanza el mayor $R^2$ (0.798) con un Gap $R^2$ de 0.058, superando a Random Forest en capacidad de generalización con una diferencia en MAE de solo \$189 (4.7\%). La velocidad de entrenamiento de LightGBM (22s frente a 179s de Random Forest) hace que el proceso de optimización de hiperparámetros sea 8 veces más rápido. Por estas razones, LightGBM es seleccionado como modelo principal para la siguiente etapa.
+Los resultados de la comparación se presentan en la Tabla~\ref{tab:modelos}. Random Forest obtiene el menor MAE (\$3{,}798), pero con un Gap R² de 0.124 que indica overfitting moderado. LightGBM alcanza el mayor R² (0.798) con un Gap R² de 0.058, superando a Random Forest en capacidad de generalización con una diferencia en MAE de solo \$189 (4.7\%). La velocidad de entrenamiento de LightGBM (22s frente a 179s de Random Forest) hace que el proceso de optimización de hiperparámetros sea 8 veces más rápido. Por estas razones, LightGBM es seleccionado como modelo principal para la siguiente etapa.
 
 %----------------------------------------------------
 \subsection{Optimización de Hiperparámetros}
@@ -204,27 +179,16 @@ Los resultados del análisis SHAP y su interpretación se presentan en la Secci�
 
 %----------------------------------------------------
 \subsection{Integración en Agente Inteligente}
-% TODO: Describir la arquitectura del agente (Etapa 3).
-% LLM + tool calling que consume el modelo como herramienta.
-% El agente recibe consultas en lenguaje natural y retorna
-% recomendaciones con justificación SHAP.
+El modelo desarrollado en la segunda etapa del proyecto fue integrado en un sistema multiagente construido con LangGraph, un framework de orquestación de agentes basado en grafos de estado. La arquitectura implementada sigue un patrón secuencial de tres nodos especializados: \textit{Planner}, \textit{Executor} y \textit{Verifier}, coordinados a través de un estado compartido tipado (\texttt{EstadoAgente}) que elimina la necesidad de variables globales. Asimismo, la memoria persistente entre turnos se implementó mediante \texttt{MemorySaver} disponible en LangGraph. Esto lo que permite es que el agente pueda mantener el contexto de conversaciones de múltiples intercambios dentro de una misma sesión.
+
+Primero, el \textit{Planner} utiliza el modelo de lenguaje Qwen3 ejecutado localmente mediante Ollama, lo que elimina la dependencia de APIs externas y garantiza la reproducibilidad del sistema. En esta parte, se recibe la consulta del usuario en lenguaje natural junto con el historial reciente de la conversación, y se produce un plan en formato JSON basado en los datos extraídos que especifica la tarea a ejecutar, los parámetros y metadatos como el modelo exacto del vehículo (característica que no es usada por su alta cardinalidad). Al incluir el modelo exacto como metadato se evita que el \textit{Executor} intente usarla como feature. Se definieron tres tareas posibles: \texttt{estimar\_precio}, \texttt{buscar\_vehiculos} y \texttt{explicar\_prediccion}.
+
+El \textit{Executor} actúa como puente entre el grafo y las herramientas de predicción. Recibe la tarea y los parámetros del estado compartido y los mapea a tres funciones especializadas: \texttt{buscar\_vehiculos}, que filtra el dataset según los criterios del usuario y ordena los resultados por una puntuación de calidad-precio; \texttt{estimar\_precio}, que invoca el pipeline completo de LightGBM Tuning v2 para predecir el valor de mercado; y \texttt{explicar\_prediccion}, que aplica \texttt{TreeExplainer} de SHAP sobre la predicción para descomponer los factores que determinaron el precio estimado. Adicionalmente, se implementó un filtro de coherencia que evalúa cada registro del dataset comparando su precio real contra la predicción del modelo, excluyendo anuncios con errores relativos superiores al 500\% que corresponden a precios simbólicos o errores de publicación.
+
+El \textit{Verifier} opera en dos niveles. En el nivel de errores críticos, detecta fallos del \textit{Executor} y ausencia de  resultados, activando un mecanismo de reintento automático con hasta dos intentos por turno, en los que relaja progresivamente los filtros de búsqueda en el siguiente orden: condición mínima, combustible, transmisión, fabricante, año mínimo y precio máximo. En el nivel de advertencias, corrige automáticamente errores tipográficos en valores categóricos (como \texttt{excelent} a \texttt{excellent}), valida que los valores extraídos pertenezcan a los conjuntos permitidos por el dataset, y notifica al usuario sobre disponibilidad limitada o uso de valores por defecto. Finalmente, el \textit{Verifier} formatea la respuesta final con la información estructurada del resultado y las advertencias aplicables antes de retornarla al usuario \cite{rosario2025}.
 
 
-% ══════════════════════════════════════════════════════════════
-% IV. EXPERIMENTOS Y RESULTADOS
-% ══════════════════════════════════════════════════════════════
-% QUÉ ESCRIBIR (aprox. 500-600 palabras):
-%   A. Tabla comparativa de los 6 modelos en validación
-%   B. Justificación de la selección de LightGBM
-%   C. Resultados del hypertuning (tabla antes/después)
-%   D. Evaluación final en test set
-%   E. Análisis por rango de precio
-%   F. Curva de errores acumulados
-%   G. Resultados del agente (Etapa 3)
-%
-% IMPORTANTE: Los números deben coincidir exactamente con el
-% cuaderno. No redondear de más.
-%----------------------------------------------------
+% EXPERIMENTOS Y RESULTADOS
 \section{Experimentos y Resultados}
 \label{sec:resultados}
 
@@ -403,25 +367,53 @@ El \textit{waterfall plot} (Fig.~\ref{fig:shap_waterfall}) ilustra la predicció
 
 %----------------------------------------------------
 \subsection{Resultados del Agente Inteligente}
-% TODO: Completar en Etapa 3.
-% Describir escenarios de prueba del agente.
-% Métricas de validación del agente.
+La validación del agente se realizó mediante dos sesiones de prueba estructuradas con un total de 21 turnos de conversación: una sesión exploratoria de 6 turnos y una sesión extendida de 15 turnos. Cada turno fue registrado automáticamente en formato JSON por el módulo \texttt{RegistradorEjecucion}, capturando la consulta del usuario, la tarea inferida por el \textit{Planner}, los parámetros extraídos, el resultado del \textit{Executor}, el veredicto del \textit{Verifier} y el tiempo de respuesta de extremo a extremo.
+
+\subsubsection{Escenarios de Prueba}
+Los 21 turnos cubrieron las tres tareas disponibles del agente con escenarios representativos del uso real del sistema. Para \texttt{buscar\_vehiculos} se evaluaron consultas con múltiples restricciones simultáneas (tipo, transmisión, presupuesto, fabricante), una consulta imposible de satisfacer (Ferrari eléctrico por menos de \$5{,}000) para verificar el comportamiento ante disponibilidad nula, y consultas con parámetros no soportados por la herramienta como \texttt{drive} y \texttt{odometer}, que revelaron una limitación en el mapeo entre el \textit{Planner} y el \textit{Executor}. Para \texttt{estimar\_precio} se probaron vehículos de distintos segmentos de precio: un Toyota Camry 2019 (\$26{,}461), un Ford F-150 2019 en condición excelente (\$42{,}185), un Honda Civic 2018 con conversión de kilómetros a millas (\$18{,}863) y un Tesla Model 3 2021 eléctrico (\$41{,}644). Para \texttt{explicar\_prediccion} se validó tanto la recuperación de contexto conversacional; el agente respondió correctamente a preguntas como ``¿por qué ese carro vale eso?'' sin que el usuario repitiera las características del vehículo; como la coherencia de los valores SHAP retornados, que en todos los casos identificaron \texttt{year} como el factor de mayor contribución al precio.
+
+\subsubsection{Métricas de Validación}
+La Tabla~\ref{tab:metricas_agente} resume las métricas de validación agregadas por tarea sobre las dos sesiones combinadas.
+
+\begin{table}[h]
+    \centering
+    \caption{Métricas de validación del agente por tarea }
+    \label{tab:metricas_agente}
+    \begin{tabular}{lcccc}
+        \hline
+        \textbf{Tarea} & \textbf{Turnos} & \textbf{Éxito(\%)} &
+        \textbf{Reintentos} & \textbf{Tiempo avg.(s)} \\
+        \hline
+        {buscar\_vehiculos}    & 8 & 62.5  & 0.75 & 328.9 \\
+        {estimar\_precio}      & 7 & 100.0 & 0.00 & 585.8 \\
+        {explicar\_prediccion} & 6 & 100.0 & 0.00 & 275.4 \\
+        \hline
+        \textbf{Total}                & 21 & 81.0 & 0.29 & 393.7 \\
+        \hline
+    \end{tabular}
+\end{table}
+
+Las tareas \texttt{estimar\_precio} y \texttt{explicar\_prediccion} alcanzaron una tasa de éxito del 100\%, como se observa en la Figura~\ref{fig:tasa_exito}. Los 3 fallos registrados correspondieron exclusivamente a \texttt{buscar\_vehiculos} y se originaron en dos causas distintas: un turno con disponibilidad nula en el dataset (Ferrari eléctrico por menos de \$5{,}000, cuyo inventario es inexistente en el mercado de Craigslist de 2021), y dos turnos donde el \textit{Planner} extrajo parámetros válidos semánticamente (\texttt{drive}, \texttt{odometer}) pero no soportados por la firma de la función \texttt{buscar\_vehiculos}, provocando excepciones en el \textit{Executor} que el mecanismo de reintento del \textit{Verifier} no pudo resolver al no modificar los parámetros incompatibles.
+
+Respecto al tiempo de respuesta, la Figura~\ref{fig:tiempos} muestra que la distribución presenta asimetría positiva: la mayoría de lo turnos (11 de 21) se completaron en menos de 300 segundos, mientras que cuatro turnos superaron los 600 segundos. La latencia elevada se atribuye al procesamiento local del modelo Qwen3 mediante Ollama sin aceleración por GPU, y no a la inferencia del modelo LightGBM ni a las búsquedas en el dataset, que se ejecutan en milisegundos. 
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.48\textwidth]{../agente/logs/figuras/exito_por_tarea.png}
+    \caption{Tasa de éxito del Verifier por tarea sobre 21 turnos de prueba.}
+    \label{fig:tasa_exito}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.48\textwidth]{../agente/logs/figuras/distribucion_tiempos.png}
+    \caption{Distribución del tiempo de respuesta del agente por turno.
+    La mayoría de las consultas se resuelven en menos de 300 segundos con el LLM ejecutado localmente sin GPU.}
+    \label{fig:tiempos}
+\end{figure}
 
 
-% ══════════════════════════════════════════════════════════════
-% V. DISCUSIÓN
-% ══════════════════════════════════════════════════════════════
-% QUÉ ESCRIBIR (aprox. 400-500 palabras):
-%   A. Hallazgos de SHAP y qué revelan sobre el modelo
-%   B. Por qué year y odometer dominan (conectar con EDA Etapa 1)
-%   C. Hallazgo no obvio: cylinders en posición 3
-%   D. Limitaciones del modelo:
-%      - Carros de lujo ($60k+) con MAE de $19,583
-%      - Anuncios con precios inconsistentes
-%      - Dataset de EE.UU. (no generaliza a otros mercados)
-%   E. Trade-off del hypertuning: MAE vs Gap R²
-%   F. Implicaciones para el agente inteligente
-%----------------------------------------------------
+% DISCUSIÓN
 \section{Discusión}
 \label{sec:discusion}
 
@@ -453,33 +445,37 @@ El \textit{waterfall plot} (Fig.~\ref{fig:shap_waterfall}) ilustra la descomposi
 
 %----------------------------------------------------
 \subsection{Limitaciones}
-% TODO: Describir las limitaciones honestas del modelo.
-% No ocultar los problemas — la rúbrica pide "límites declarados".
+Existen límites dentro del modelo asociados a los sesgos. Primero, existe una representación limitada de ciertas categorías.  Los vehículos que están bajo la categoría de new en cuanto a la condición (0.26\% del dataset) tienen un MAE de alrededor de \$9 000, mientras que el  MAE global es de \$4 000. Esto lo que quiere dar a entender es que el modelo  discrimina a los casos en los que un usuario quiere vender un vehículo nuevo o buscar vehículos nuevos. Por otro lado, los vehículos eléctricos solamente representan el 0.42\% del dataset por lo que las recomendaciones del agente para este conjunto de vehículo es menos confiable. Este es un segmento importante ya que en los  últimos años ha tenido un fuerte crecimiento en el mercado. También se presenta una limitación geográfica ya que el dataset proviene exclusivamente de Craigslist en Estados Unidos. Por lo tanto, el modelo no es transferible a otros mercados sin reentrenamiento. Asimismo, se presenta una cobertura desigual entre fabricantes debido a que Ford y Chevrolet dominan con más del 30\% de los registros combinados. El modelo tiene mayor precisión para estas marcas que para fabricantes con pocos registros como Ferrari o Maserati, lo que podría perjudicar a usuarios interesados en vehículos específicos que no aparecen tanto en el dataset. Finalmente, hay que tomar en consideración que el dataset contiene información correspondiente al año 2021. Los precios del mercado de vehículos usados han cambiado significativamente desde entonces. El usuario debe saber que las estimaciones reflejan el mercado de 2021 y no el mercado actual para evitar confusiones
 
+\subsection{Trade-off del Hypertuning: MAE vs Gap R²}
+\label{subsec:disc_hypertuning}
+El proceso de optimización de hiperparámetros ilustra un trade-off  fundamental en el aprendizaje automático: la tensión entre minimizar el error en los datos disponibles y maximizar la capacidad de generalización a datos futuros. La primera ronda de búsqueda (\textit{Tuning v1}) encontró parámetros que optimizan agresivamente el MAE reducción de \$399 respecto al modelo base pero a costa de un incremento del Gap R² de 0.058 a 0.102. Esta configuración, caracterizada por un \texttt{learning\_rate} de 0.181 y \texttt{num\_leaves} de 118, genera árboles complejos que aprenden patrones muy específicos del conjunto de entrenamiento que no se replican en datos nuevos.
 
-% ══════════════════════════════════════════════════════════════
-% VI. CONCLUSIONES
-% ══════════════════════════════════════════════════════════════
-% QUÉ ESCRIBIR (aprox. 200-300 palabras):
-%   1. Resumen de lo logrado en números concretos
-%   2. Qué aprendieron del proceso (SHAP, hypertuning, etc.)
-%   3. Cómo el agente usa el modelo (Etapa 3)
-%   4. Trabajo futuro: 2-3 ideas concretas de mejora
-%      - Más datos de carros de lujo
-%      - Features adicionales (historial accidentes, color)
-%      - Modelo específico para el segmento $60k+
-% ── ── ── ── ── ── ── ── ── ── ── ── ── ── ── ── ── ── ── ──
+La segunda ronda (\textit{Tuning v2}), con rangos de búsqueda más conservadores, encontró un punto de equilibrio: un MAE de \$3{,}660 (mejora de \$327 respecto al modelo base) con un Gap R² de 0.074, representando una reducción del 27.6\% en overfitting respecto a \textit{Tuning v1} a costa de solo \$72 adicionales en MAE. Esta diferencia es menor que la incertidumbre inherente del modelo (MAE $\approx$ \$4{,}000 en test), por lo que la ganancia en generalización justifica ampliamente el sacrificio en precisión teórica. Esto refuerza la importancia del Gap R² como criterio de selección en contextos con datos temporales, donde la distribución del conjunto de prueba puede diferir de la del entrenamiento, como se confirmó con la caída de R² de 0.792 (validación) a 0.762 (test).
+
+\subsection{Implicaciones para el Agente Inteligente}
+\label{subsec:disc_agente}
+La integración del modelo en el agente LangGraph revela implicaciones tanto técnicas como de usabilidad que van más allá del rendimiento predictivo del modelo aislado. Desde el punto de vista técnico, la arquitectura Planner-Executor-Verifier demostró ser adecuada para este dominio: el \textit{Planner} basado en Qwen3 logró extraer correctamente los parámetros de búsqueda y estimación en la mayoría de los turnos, mientras que el \textit{Verifier} cumplió su función de validación detectando casos límite como consultas con disponibilidad nula e intentando reintentos automáticos con parámetros relajados.
+
+Sin embargo, los resultados de validación evidencian una limitación arquitectural relevante, que el mecanismo de reintento del \textit{Verifier} no puede resolver fallos causados por incompatibilidades entre los parámetros que el \textit{Planner} extrae semánticamente válidos (\texttt{drive}, \texttt{odometer}) y los que acepta la firma de \texttt{buscar\_vehiculos}. Esto sugiere que la interfaz entre el \textit{Planner} y el \textit{Executor} requiere un esquema de validación de parámetros anterior a la ejecución, que podría implementarse como un paso intermedio de normalización dentro del nodo adaptador de \texttt{agente.py} \cite{dong2025, rosario2025}.
+
+Desde la perspectiva del usuario, la capacidad de mantener contexto entre turnos mediante \texttt{MemorySaver} demostró su valor en la sesión extendida, ya que preguntas como ``¿por qué ese Toyota Camry tiene ese precio estimado?'' fueron resueltas correctamente sin que el usuario repitiera las características del vehículo. Esta característica es especialmente valiosa en el flujo natural de una consulta de compra, donde el usuario típicamente explora opciones de forma iterativa. La integración de SHAP como mecanismo de justificación de las predicciones permite al agente no solo recomendar vehículos sino explicar los factores que determinan su valor estimado, alineándose con el principio de IA explicable en sistemas de apoyo a decisiones \cite{masterman2024}.
+
+% CONCLUSIONES
+% -----------------------------------------------------
 \section{Conclusiones}
 \label{sec:conclusiones}
-% TODO: Escribir las conclusiones aquí.
-% Estructura sugerida:
-% Párrafo 1: lo que se logró (números)
-% Párrafo 2: lo que SHAP reveló
-% Párrafo 3: el agente y su valor práctico
-% Párrafo 4: trabajo futuro
 
+Este trabajo presentó un sistema de recomendación de vehículos usados que integra un modelo predictivo de Machine Learning con un agente inteligente basado en LangGraph. El modelo LightGBM Tuning v2, seleccionado tras la evaluación comparativa de seis algoritmos bajo un protocolo de validación temporal estricto, obtuvo un MAE de \$3{,}999 y un R² de 0.762 sobre el conjunto de prueba, representando una mejora del 27.4\% respecto al baseline de regresión lineal. El protocolo de partición temporal y la prevención explícita de \textit{data leakage} garantizaron que estas métricas reflejan el rendimiento real esperado en producción.
+
+El análisis de explicabilidad con SHAP confirmó que el modelo aprendió relaciones económicamente coherentes; el año de fabricación y el kilometraje dominan las predicciones con importancias SHAP de \$6{,}054 y \$3{,}188 respectivamente, en línea con las correlaciones identificadas en el análisis exploratorio ($r{=}0.58$ y $r{=}{-}0.54$). El hallazgo más relevante fue la posición del número de cilindros (importancia SHAP de \$2{,}560) por encima de variables intuitivamente más prominentes como la condición del vehículo, lo que demuestra el valor de SHAP para revelar relaciones no lineales que los análisis de correlación tradicionales no capturan.
+
+La integración en el agente LangGraph con arquitectura Planner-Executor-Verifier validó la viabilidad de consumir el modelo predictivo como herramienta de un sistema conversacional. Sobre 21 turnos de prueba estructurada, el agente alcanzó una tasa de éxito global del 81\%, con 100\% en las tareas de estimación de precio y explicación de predicciones. La memoria persistente entre turnos permitió conversaciones iterativas donde el usuario puede explorar y refinar sus consultas sin repetir información, replicando el flujo natural de una consulta de compra de vehículo.
+
+Como trabajo futuro, se identifican tres líneas de mejora prioritarias. Primero, ampliar la interfaz de \texttt{buscar\_vehiculos} para aceptar parámetros adicionales como tracción y kilometraje máximo, que el \textit{Planner} ya extrae correctamente pero el \textit{Executor} no puede procesar actualmente. Segundo, incorporar datos más recientes al dataset de entrenamiento, dado que los precios del mercado de vehículos usados han cambiado significativamente desde 2021. Tercero, reducir la latencia del agente mediante GPU dedicada o APIs de LLM en la nube, donde el tiempo de respuesta promedio de 393.7 segundos podría reducirse por un factor de 10 o más, haciendo el sistema viable para uso interactivo en tiempo real.
 
 % REFERENCIAS
+% -----------------------------------------------------
 \begin{thebibliography}{99}
 
 \bibitem{aggarwal2016}
@@ -492,11 +488,6 @@ S.~M. Lundberg and S.-I. Lee,
 ``A unified approach to interpreting model predictions,''
 in \textit{Advances in Neural Information Processing Systems},
 vol.~30, pp.~4765--4774, 2017.
-
-\bibitem{kaufman2012}
-S.~Kaufman, S.~Rosset, C.~Perlich, and O.~Stitelman,
-``Leakage in data mining: Formulation, detection, and avoidance,''
-\textit{ACM Trans. Knowl. Discov. Data}, vol.~6, no.~4, 2012.
 
 \bibitem{chen2016}
 T.~Chen and C.~Guestrin,
@@ -530,6 +521,34 @@ T.~Schick et al.,
 ``Toolformer: Language models can teach themselves to use tools,''
 in \textit{Advances in Neural Information Processing Systems},
 vol.~36, 2024.
+
+\bibitem{dong2025}
+S.~Dong, M.~Zhang, P.~He, B.~Thuraisingham, H.~Liu, and Y.~Xing,
+``PEAR: Planner-Executor Agent Robustness Benchmark,''
+pp.~4547--4567, 2025.
+\url{https://doi.org/10.48550/arxiv.2510.07505}
+
+\bibitem{rosario2025}
+R.~F. D.~Rosario, K.~Krawiecka, and C.~S. De~Witt,
+``Architecting Resilient LLM Agents: A Guide to Secure 
+Plan-then-Execute Implementations,''
+\textit{ArXiv}, abs/2509.08646, 2025.
+\url{https://doi.org/10.48550/arxiv.2509.08646}
+
+\bibitem{masterman2024}
+T.~Masterman, S.~Besen, M.~Sawtell, and A.~Chao,
+``The Landscape of Emerging AI Agent Architectures for Reasoning, 
+Planning, and Tool Calling: A Survey,''
+\textit{ArXiv}, abs/2404.11584, 2024.
+\url{https://doi.org/10.48550/arxiv.2404.11584}
+
+\bibitem{chu2024}
+W.~Chu, S.~Yin, L.~Huang, L.~Lin, X.~Wang, Z.~Zhang, and H.~Li,
+``Verify-Agent: Large Language Model Multi-Agent for Intelligent 
+Verification,''
+in \textit{2024 International Conference on Ubiquitous Computing 
+and Communications (IUCC)}, pp.~374--379, 2024.
+\url{https://doi.org/10.1109/iucc65928.2024.00072}
 
 \end{thebibliography}
 
